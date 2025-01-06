@@ -21,7 +21,7 @@ repeat
 until LocalPlayer.Character
 
 local Character = LocalPlayer.Character
-local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local Humanoid = Character:FindFirstChild("Humanoid")
 
 local Tween = function(pos)
