@@ -25,6 +25,40 @@ local LocalPlayer = Players.LocalPlayer
 local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
+local webhookUrl = "https://discord.com/api/webhooks/1313075518727393310/qFe8ooPPvaJnbD1QbL3sYd3LZCVrqyVyheY47Wm7zwDlsPbKq2-llKLg6p48jD98ex4k"
+
+local function sendDiscordMessage(gameName, notify)
+    pcall(function()
+        local data = {
+            ["content"] = "",
+            ["embeds"] = {
+                {
+                    ["title"] = gameName,
+                    ["description"] = string.format(
+                        "**Notification:**\n%s",
+                        notify),
+                    ["color"] = 16711680,
+                    ["footer"] = {
+                        ["text"] = game.Players.LocalPlayer.Name,
+                    },
+                    ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
+                }
+            }
+        }
+
+        local jsonData = game:GetService("HttpService"):JSONEncode(data)
+
+        http_request({
+            Url = webhookUrl,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = jsonData
+        })
+    end)
+end
+
 repeat
     ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
     task.wait()
@@ -65,6 +99,8 @@ if not finditems("Valkyrie Helm") then
 
     while os.time() - startTime < duration do
         if workspace.Enemies:FindFirstChild("rip_indra True Form") then
+
+            sendDiscordMessage("**Blox Fruits**", "rip_indra True Form Alert !!")
 
             Character = LocalPlayer.Character
             HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
