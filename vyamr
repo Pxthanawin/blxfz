@@ -54,7 +54,6 @@ if not finditems("Valkyrie Helm") then
     local duration = 3 * 60
 
     while os.time() - startTime < duration do
-        print(os.time() - startTime)
         if workspace.Enemies:FindFirstChild("rip_indra True Form") then
 
             Character = LocalPlayer.Character
