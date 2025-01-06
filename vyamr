@@ -175,7 +175,7 @@ if not finditems("Valkyrie Helm") then
     end
 
     local tpservice = game:GetService("TeleportService")
-    tpservice:Teleport(2753915549, game.Players.LocalPlayer)
+    tpservice:Teleport(7449423635, game.Players.LocalPlayer)
 end
 if finditems("Mirror Fractal") then
 
