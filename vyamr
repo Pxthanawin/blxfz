@@ -15,14 +15,12 @@ local LocalPlayer = Players.LocalPlayer
 local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
-local Character = LocalPlayer.Character
-
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
 repeat
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
     task.wait()
-until LocalPlayer:FindFirstChild("NextSpawn")
+until LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
+local Character = LocalPlayer.Character
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart", 10)
 local Humanoid = Character.Humanoid
 
