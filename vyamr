@@ -16,13 +16,13 @@ local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 repeat
-    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
+    ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
     task.wait()
-until LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+until LocalPlayer.Character
 
 local Character = LocalPlayer.Character
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart", 10)
-local Humanoid = Character.Humanoid
+local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+local Humanoid = Character:FindFirstChild("Humanoid")
 
 local Tween = function(pos)
     local Distance = (pos - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -48,11 +48,13 @@ local finditems = function(item)
 end
 
 if not finditems("Valkyrie Helm") then
+
     Tween(Vector3.new(-4977.73046875, 314.5505676269531, -3021.42529296875))
     local startTime = os.time()
     local duration = 3 * 60
 
     while os.time() - startTime < duration do
+        print(os.time() - startTime)
         if workspace.Enemies:FindFirstChild("rip_indra True Form") then
 
             Character = LocalPlayer.Character
