@@ -17,6 +17,7 @@ local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 local Character = LocalPlayer.Character
 
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
 repeat
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
     task.wait()
