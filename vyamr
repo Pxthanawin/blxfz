@@ -50,7 +50,7 @@ end
 if not finditems("Valkyrie Helm") then
     Tween(Vector3.new(-4977.73046875, 314.5505676269531, -3021.42529296875))
     local startTime = os.time()
-    local duration = 5 * 60
+    local duration = 3 * 60
 
     while os.time() - startTime < duration do
         if workspace.Enemies:FindFirstChild("rip_indra True Form") then
