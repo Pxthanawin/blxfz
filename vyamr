@@ -16,13 +16,14 @@ local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 local Character = LocalPlayer.Character
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-local Humanoid = Character.Humanoid
 
 repeat
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("SetTeam", "Pirates")
     task.wait()
 until LocalPlayer:FindFirstChild("NextSpawn")
+
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = Character.Humanoid
 
 local Tween = function(pos)
     local Distance = (pos - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
