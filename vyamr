@@ -23,7 +23,7 @@ repeat
     task.wait()
 until LocalPlayer:FindFirstChild("NextSpawn")
 
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart", 10)
 local Humanoid = Character.Humanoid
 
 local Tween = function(pos)
