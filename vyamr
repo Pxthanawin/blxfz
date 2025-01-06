@@ -153,8 +153,11 @@ if not finditems("Valkyrie Helm") then
             Tween(workspace.Enemies["rip_indra True Form"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
             while workspace.Enemies:FindFirstChild("rip_indra True Form") do
                 Character = LocalPlayer.Character
-                HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-                Humanoid = Character.Humanoid
+                HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+                Humanoid = Character:FindFirstChild("Humanoid")
+                if not HumanoidRootPart then
+                    return
+                end
                 for _, v in ipairs(Backpack:GetChildren()) do
                     if v:IsA("Tool") then
                         local tooltip = v.ToolTip
