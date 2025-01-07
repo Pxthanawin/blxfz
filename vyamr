@@ -179,7 +179,7 @@ if not finditems("Valkyrie Helm") then
                 HumanoidRootPart.CFrame = CFrame.new(workspace.Enemies["rip_indra True Form"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
                 game:GetService("RunService").Stepped:Wait()
             end
-            return
+            break
         end
         task.wait(1)
     end
@@ -307,7 +307,7 @@ if finditems("Mirror Fractal") then
                 HumanoidRootPart.CFrame = CFrame.new(workspace.Enemies["Dough King"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
                 game:GetService("RunService").Stepped:Wait()
             end
-            return
+            break
         end
         task.wait(1)
     end
