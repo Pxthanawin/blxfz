@@ -231,7 +231,7 @@ if not finditems("Valkyrie Helm") then
 
     tpservice:Teleport(baseplate, game.Players.LocalPlayer)
 end
-if finditems("Mirror Fractal") then
+if not finditems("Mirror Fractal") then
     Tween(Vector3.new(-2062.16845703125, 69.80197143554688, -12112.6943359375))
     local startTime = os.time()
     local duration = 10
