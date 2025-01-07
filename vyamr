@@ -162,11 +162,18 @@ if not finditems("Valkyrie Helm") then
 
             Tween(workspace.Enemies["rip_indra True Form"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
             while workspace.Enemies:FindFirstChild("rip_indra True Form") do
-                Character = LocalPlayer.Character
-                HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
-                Humanoid = Character:FindFirstChild("Humanoid")
+                game:GetService("RunService").Stepped:Wait()
+                if not LocalPlayer.Character then
+                    continue
+                end
+                if Character ~= LocalPlayer.Character then
+                    Character = LocalPlayer.Character
+                    HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+                    Humanoid = Character:FindFirstChild("Humanoid")
+                    Tween(workspace.Enemies["rip_indra True Form"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
+                end
                 if not HumanoidRootPart then
-                    return
+                    continue
                 end
                 for _, v in ipairs(Backpack:GetChildren()) do
                     if v:IsA("Tool") then
@@ -177,7 +184,6 @@ if not finditems("Valkyrie Helm") then
                     end
                 end
                 HumanoidRootPart.CFrame = CFrame.new(workspace.Enemies["rip_indra True Form"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
-                game:GetService("RunService").Stepped:Wait()
             end
             break
         end
@@ -290,11 +296,18 @@ if finditems("Mirror Fractal") then
 
             Tween(workspace.Enemies["Dough King"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
             while workspace.Enemies:FindFirstChild("Dough King") do
-                Character = LocalPlayer.Character
-                HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
-                Humanoid = Character:FindFirstChild("Humanoid")
+                game:GetService("RunService").Stepped:Wait()
+                if not LocalPlayer.Character then
+                    continue
+                end
+                if Character ~= LocalPlayer.Character then
+                    Character = LocalPlayer.Character
+                    HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+                    Humanoid = Character:FindFirstChild("Humanoid")
+                    Tween(workspace.Enemies["Dough King"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
+                end
                 if not HumanoidRootPart then
-                    return
+                    continue
                 end
                 for _, v in ipairs(Backpack:GetChildren()) do
                     if v:IsA("Tool") then
@@ -305,7 +318,6 @@ if finditems("Mirror Fractal") then
                     end
                 end
                 HumanoidRootPart.CFrame = CFrame.new(workspace.Enemies["Dough King"].HumanoidRootPart.Position + Vector3.new(0, 20, 0))
-                game:GetService("RunService").Stepped:Wait()
             end
             break
         end
