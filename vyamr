@@ -68,6 +68,51 @@ local Character = LocalPlayer.Character
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local Humanoid = Character:FindFirstChild("Humanoid")
 
+local TP = function()
+    while task.wait() do
+        for _, v in ipairs(PlayerGui.ServerBrowser.Frame.FakeScroll.Inside:GetChildren()) do
+
+            if not v:IsA("Frame") then continue end
+
+            pcall(function()
+                local button = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea:FindFirstChild("OkButton")
+                if button then
+                    local buttonSize = button.AbsoluteSize
+                    local buttonPosition = button.AbsolutePosition
+                    local centerX = buttonPosition.X + (buttonSize.X / 2)
+                    local centerY = buttonPosition.Y + (buttonSize.Y * 2)
+                    VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, true, button, 0)
+                    VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, false, button, 0)
+                end
+            end)
+
+            if not PlayerGui.ServerBrowser.Enabled then
+                PlayerGui.ServerBrowser.Enabled = true
+                task.wait()
+            end
+            if v.ServerName.Text == "<b>Server Name:</b> " or v.ServerName.Text == "Server Name: El Congo TV" then
+                continue
+            end
+            if v:FindFirstChild("Join") then
+                GuiService.SelectedObject = v:FindFirstChild("Join")
+                task.wait()
+                if GuiService.SelectedObject == v:FindFirstChild("Join") then
+                    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, nil)
+                    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, nil)
+                    task.wait(1)
+                end
+            end
+
+        end
+
+        GuiService.SelectedObject = PlayerGui.ServerBrowser.Frame.Refresh
+        task.wait()
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, nil)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, nil)
+        task.wait(1)
+    end
+end
+
 local Tween = function(pos)
     local Distance = (pos - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     if Distance >= 2000 then
@@ -95,7 +140,7 @@ if not finditems("Valkyrie Helm") then
 
     Tween(Vector3.new(-4977.73046875, 314.5505676269531, -3021.42529296875))
     local startTime = os.time()
-    local duration = 10
+    local duration = 1
 
     while os.time() - startTime < duration do
         if workspace.Enemies:FindFirstChild("rip_indra True Form") then
@@ -229,12 +274,12 @@ if not finditems("Valkyrie Helm") then
         task.wait(1)
     end
 
-    tpservice:Teleport(baseplate, game.Players.LocalPlayer)
+    TP()
 end
 if not finditems("Mirror Fractal") then
     Tween(Vector3.new(-2062.16845703125, 69.80197143554688, -12112.6943359375))
     local startTime = os.time()
-    local duration = 10
+    local duration = 1
 
     while os.time() - startTime < duration do
         if workspace.Enemies:FindFirstChild("Dough King") then
@@ -368,5 +413,5 @@ if not finditems("Mirror Fractal") then
         task.wait(1)
     end
 
-    tpservice:Teleport(baseplate, game.Players.LocalPlayer)
+    TP()
 end
