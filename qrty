@@ -1,3 +1,16 @@
+task.spawn(function()
+    task.wait(10)
+    while task.wait() do
+        pcall(function()
+            _G.startm = game:GetService("Players").LocalPlayer.Data.Beli.Value
+            task.wait(600)
+            if _G.startm == game:GetService("Players").LocalPlayer.Data.Beli.Value then
+                game:Shutdown()
+            end
+        end)
+    end
+end)
+
 getgenv().Hermanos_Settings = {
 
     ['key'] = '7e7b6686-593d-4306-bd3c-af5dfcab1010',
