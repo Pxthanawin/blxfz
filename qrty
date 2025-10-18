@@ -1,3 +1,5 @@
+task.wait(10)
+
 local banana_keys = {
     ['PC-24'] = "5cd825159627a0b9e858406a",
     ['PC-25'] = "2daa0763af6a2a7b31c247ee",
