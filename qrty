@@ -19,16 +19,33 @@ local banana_keys = {
 }
 
 task.spawn(function()
-    task.wait(10)
-    while task.wait() do
-        pcall(function()
-            _G.startm = game:GetService("Players").LocalPlayer.Data.Beli.Value
-            task.wait(600)
-            if _G.startm == game:GetService("Players").LocalPlayer.Data.Beli.Value then
-                game:Shutdown()
+    task.wait(50)
+    pcall(function()
+        local data_load = game:GetService("Players").LocalPlayer.Character
+        if not data_load then
+            local c
+            for i=1, 10 do
+                task.wait(1)
+                c = game:GetService("Players").LocalPlayer.Character
             end
-        end)
-    end
+            if not c then
+                return
+            end
+        end
+        while task.wait() do
+            pcall(function()
+                local Data = game:GetService("Players").LocalPlayer.Data
+                if Data and Data.Beli then
+                    _G.startm = Data.Beli.Value
+                    task.wait(600)
+                    if _G.startm == Data.Beli.Value then
+                        game:Shutdown()
+                    end
+                end
+            end)
+        end
+    end)
+    game:Shutdown()
 end)
 
 if PC_NAME then
