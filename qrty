@@ -118,14 +118,14 @@ if banana_keys[PC_NAME] then
         },
         ["Auto Summon Rip Indra"] = true,
         ["Select Hop"] = {
-            ["Hop Server If Have Player Near"] = true,
+            ["Hop Server If Have Player Near"] = false,
             ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = true,
-            ["Hop Find Dough King Get Mirror Fractal"] = true,
+            ["Hop Find Dough King Get Mirror Fractal"] = false,
             ["Hop Find Raids Castle [CDK]"] = true,
             ["Hop Find Cake Queen [CDK]"] = true,
             ["Hop Find Soul Reaper [CDK]"] = true,
             ["Hop Find Darkbeard [SG]"] = false,
-            ["Hop Find Mirage [ Pull Lever ]"] = true,
+            ["Hop Find Mirage [ Pull Lever ]"] = false,
         },
         ["Farm Mastery"] = {
             ["Melee"] = false,
