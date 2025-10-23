@@ -1,3 +1,13 @@
+local RunService = game:GetService("RunService")
+
+task.spawn(function()
+    while task.wait(3) do
+        RunService:Set3dRenderingEnabled(true)
+        task.wait(0.1)
+        RunService:Set3dRenderingEnabled(false)
+    end
+end)
+
 task.wait(10)
 
 local banana_keys = {
