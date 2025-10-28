@@ -10,7 +10,12 @@ task.spawn(function()
     end
 end)
 
+
 task.wait(10)
+
+local run_maru = {
+    ['PC-02'] = 1
+}
 
 local banana_keys = {
     ['PC-240'] = "5cd825159627a0b9e858406a",
@@ -81,7 +86,36 @@ if PC_NAME then
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
 
-if banana_keys[PC_NAME] then
+if run_maru[PC_NAME] then
+    _G.OneClickSettings = {
+        ["LockFruits"] = {
+                "T-Rex-T-Rex",
+                "Dough-Dough",
+                "Dragon-Dragon",
+                "Kitsune-Kitsune",
+                "Mammoth-Mammoth",
+                "Leopard-Leopard",
+                "Gas-Gas",
+                "Yeti-Yeti",
+                "Gravity-Gravity",
+                "Shadow-Shadow",
+                "Venom-Venom",
+                "Control-Control",
+                "Spirit-Spirit"
+        },
+        ["MainFruits"] = {
+            "Dough-Dough"
+        },
+        ["RegularFruits"] = {
+            "Flame-Flame",
+            "Magmag-Magma",
+            "Dark-Dark",
+            "Light-Light"
+        },
+        ["FragmentsCap"] = 60000
+    }
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ca26528a544650b1670bf92a08999e4c.lua"))()
+elseif banana_keys[PC_NAME] then
     getgenv().Key = banana_keys[PC_NAME]
     getgenv().SettingFarm ={
         ["Hide UI"] = false,
