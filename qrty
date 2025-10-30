@@ -31,7 +31,7 @@ local banana_keys = {
     ['PC-350'] = "44a94c9b1352d82e62481fca",
     ['PC-360'] = "7ae7da9c819aec02114e577e",
     ['PC-370'] = "53f90f1032025bcac2d89daa",
-    ['PC-380'] = "bc664e84da988dfa89adfb74",
+    ['PC-38'] = "bc664e84da988dfa89adfb74",
     ['PC-390'] = "1dc7942fc904eba807d46b62",
 }
 
