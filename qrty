@@ -1,14 +1,14 @@
 print("[ok]")
 
 local RunService = game:GetService("RunService")
-
+--[[
 task.spawn(function()
     while task.wait(3) do
         RunService:Set3dRenderingEnabled(true)
         task.wait(0.1)
         RunService:Set3dRenderingEnabled(false)
     end
-end)
+end)]]
 
 
 task.wait(10)
@@ -18,21 +18,21 @@ local run_maru = {
 }
 
 local banana_keys = {
-    ['PC-240'] = "5cd825159627a0b9e858406a",
-    ['PC-250'] = "2daa0763af6a2a7b31c247ee",
-    ['PC-260'] = "d94fc3686c260ead72afe0ee",
-    ['PC-270'] = "8ff0e266d9e99c03b29aefa4",
-    ['PC-290'] = "ec2879826d5e6831b1d973ae",
-    ['PC-300'] = "7832599e58fa2ff3bc6f4cc8",
-    ['PC-310'] = "bde4df67d32723790652fca5",
-    ['PC-320'] = "a62e7e044cc6801cde22047e",
-    ['PC-330'] = "4961bad421f4f21e14d8d0e9",
-    ['PC-340'] = "d315e33ed33c7a5a66346871",
-    ['PC-350'] = "44a94c9b1352d82e62481fca",
-    ['PC-360'] = "7ae7da9c819aec02114e577e",
-    ['PC-370'] = "53f90f1032025bcac2d89daa",
+    ['PC-240'] = "5cd825159627a0b9e858406a", --pbass
+    ['PC-250'] = "2daa0763af6a2a7b31c247ee", --pp
+    ['PC-26'] = "d94fc3686c260ead72afe0ee",
+    ['PC-27'] = "8ff0e266d9e99c03b29aefa4",
+    ['PC-29'] = "ec2879826d5e6831b1d973ae",
+    ['PC-30'] = "7832599e58fa2ff3bc6f4cc8",
+    ['PC-31'] = "bde4df67d32723790652fca5",
+    ['PC-32'] = "a62e7e044cc6801cde22047e",
+    ['PC-33'] = "4961bad421f4f21e14d8d0e9",
+    ['PC-34'] = "d315e33ed33c7a5a66346871",
+    ['PC-35'] = "44a94c9b1352d82e62481fca",
+    ['PC-36'] = "7ae7da9c819aec02114e577e",
+    ['PC-37'] = "53f90f1032025bcac2d89daa",
     ['PC-38'] = "bc664e84da988dfa89adfb74",
-    ['PC-390'] = "1dc7942fc904eba807d46b62",
+    ['PC-39'] = "1dc7942fc904eba807d46b62",
 }
 
 task.spawn(function()
@@ -79,7 +79,7 @@ if PC_NAME then
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Leopard', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Tiger'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain'
         }
     }
 
@@ -167,9 +167,9 @@ elseif banana_keys[PC_NAME] then
             ["Hop Server If Have Player Near"] = false,
             ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = true,
             ["Hop Find Dough King Get Mirror Fractal"] = false,
-            ["Hop Find Raids Castle [CDK]"] = true,
-            ["Hop Find Cake Queen [CDK]"] = true,
-            ["Hop Find Soul Reaper [CDK]"] = true,
+            ["Hop Find Raids Castle [CDK]"] = false,
+            ["Hop Find Cake Queen [CDK]"] = false,
+            ["Hop Find Soul Reaper [CDK]"] = false,
             ["Hop Find Darkbeard [SG]"] = false,
             ["Hop Find Mirage [ Pull Lever ]"] = false,
         },
