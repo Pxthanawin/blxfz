@@ -87,7 +87,7 @@ if PC_NAME then
 end
 
 --if run_maru[PC_NAME] then
-if not run_maru[PC_NAME] then
+if not banana_keys[PC_NAME] then
     _G.OneClickSettings = {
         ["LockFruits"] = {
                 "T-Rex-T-Rex",
