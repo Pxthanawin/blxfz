@@ -79,7 +79,7 @@ if PC_NAME then
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Leopard', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Tiger'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain'
         }
     }
 
@@ -94,7 +94,7 @@ if run_maru[PC_NAME] then
                 "Dragon-Dragon",
                 "Kitsune-Kitsune",
                 "Mammoth-Mammoth",
-                "Leopard-Leopard",
+                "Tiger-Tiger",
                 "Gas-Gas",
                 "Yeti-Yeti",
                 "Gravity-Gravity",
@@ -185,7 +185,7 @@ elseif banana_keys[PC_NAME] then
         },
         ["Sniper Fruit Shop"] = {
             ["Enabled"] = true,
-            ["Fruit"] = {"Leopard-Leopard","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
+            ["Fruit"] = {"Tiger-Tiger","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
         },
         ["Lock Fruits"] = {
             [1] = "T-Rex-T-Rex",
@@ -193,7 +193,7 @@ elseif banana_keys[PC_NAME] then
             [3] = "Dragon-Dragon",
             [4] = "Kitsune-Kitsune",
             [5] = "Mammoth-Mammoth",
-            [6] = "Leopard-Leopard",
+            [6] = "Tiger-Tiger",
             [7] = "Gas-Gas",
             [8] = "Yeti-Yeti",
             [9] = "Gravity-Gravity",
@@ -235,7 +235,7 @@ else
                 -- "Dough-Dough",
                 "Kitsune-Kitsune",
                 "Mammoth-Mammoth",
-                "Leopard-Leopard",
+                "Tiger-Tiger",
                 "Gas-Gas",
                 "Yeti-Yeti",
                 "Gravity-Gravity",
