@@ -86,7 +86,8 @@ if PC_NAME then
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
 
-if run_maru[PC_NAME] then
+--if run_maru[PC_NAME] then
+if not run_maru[PC_NAME] then
     _G.OneClickSettings = {
         ["LockFruits"] = {
                 "T-Rex-T-Rex",
