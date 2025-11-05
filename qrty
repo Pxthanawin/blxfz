@@ -90,113 +90,7 @@ if PC_NAME then
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
 
-if not banana_keys[PC_NAME] then
-    _G.Team = "Pirate" -- Marine / Pirate
-    getgenv().Script_Mode = "Kaitun_Script"
-    _G.MainSettings = {
-        ["EnabledHOP"] = true,
-        ['FPSBOOST'] = true,
-        ["FPSLOCKAMOUNT"] = 15,
-        ['WhiteScreen'] = true,
-        ['CloseUI'] = false,
-        ["NotifycationExPRemove"] = true,
-        ['AFKCheck'] = 150,
-        ["LockFragments"] = 20000,
-        ["LockFruitsRaid"] = {
-            [1] = "T-Rex-T-Rex",
-            [2] = "Dough-Dough",
-            [3] = "Dragon-Dragon",
-            [4] = "Kitsune-Kitsune",
-            [5] = "Mammoth-Mammoth",
-            [6] = "Tiger-Tiger",
-            [7] = "Gas-Gas",
-            [8] = "Yeti-Yeti",
-            [9] = "Gravity-Gravity",
-            [10] = "Shadow-Shadow",
-            [11] = "Venom-Venom",
-            [12] = "Control-Control",
-            [13] = "Spirit-Spirit",     
-        }
-    }
-    _G.SharkAnchor_Settings = {
-        ["Enabled_Farm"] = true,
-        ['FarmAfterMoney'] = 2500000
-    }
-    _G.Quests_Settings = {        
-        ['Rainbow_Haki'] = false,
-        ["MusketeerHat"] = true,
-        ["PullLever"] = true,
-        ['DoughQuests_Mirror'] = {
-            ['Enabled'] = true,
-            ['UseFruits'] = true
-        }        
-    }
-    _G.Races_Settings = {
-        ['Race'] = {
-            ['EnabledEvo'] = true,
-            ["v2"] = true,
-            ["v3"] = true,
-            ["Races_Lock"] = {
-                ["Races"] = {
-                    ["Mink"] = true,
-                    ["Human"] = true,
-                    ["Fishman"] = true
-                },
-                ["RerollsWhenFragments"] = 20000
-            }
-        }
-    }
-    _G.Fruits_Settings = {
-        ['Main_Fruits'] = {''},
-        ['Select_Fruits'] = {"Magma-Magma","Light-Light","Ice-Ice","Dark-Dark","Buddha-Buddha"}
-    }
-    _G.Settings_Melee = {
-        ['Superhuman'] = true,
-        ['DeathStep'] = true,
-        ['SharkmanKarate'] = true,
-        ['ElectricClaw'] = true,
-        ['DragonTalon'] = true,
-        ['Godhuman'] = true
-    }
-    _G.SwordSettings = {
-        ['Saber'] = true,
-        ["Pole"] = false,
-        ['MidnightBlade'] = false,
-        ['Shisui'] = false,
-        ['Saddi'] = false,
-        ['Wando'] = false,
-        ['Yama'] = false,
-        ['Rengoku'] = false,
-        ['Canvander'] = false,
-        ['BuddySword'] = false,
-        ['TwinHooks'] = false,
-        ['HallowScryte'] = true,
-        ['TrueTripleKatana'] = false,
-        ['CursedDualKatana'] = true
-    }
-    _G.GunSettings = {
-        ['Kabucha'] = false,
-        ['SerpentBow'] = false,
-        ['SoulGuitar'] = false
-    }
-    _G.FarmMastery_Settings = {
-        ['Melee'] = true,
-        ['Sword'] = true,
-        ['DevilFruits'] = true,
-        ['Select_Swords'] = {
-            ["AutoSettings"] = true,
-            ["ManualSettings"] = {
-                "Saber",
-                "Buddy Sword"
-            }
-        }
-    }
-    _G.Hop_Settings = {
-        ["Find Tushita"] = true
-    }
-
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e1c3fb1e210e932600653f256d136b6e.lua"))()
-elseif banana_keys[PC_NAME] then
+if banana_keys[PC_NAME] then
     getgenv().Key = banana_keys[PC_NAME]
     getgenv().SettingFarm ={
         ["Hide UI"] = false,
@@ -301,11 +195,11 @@ else
                 -- u can configs add mores/remove and must end with , (comma symbol)
             },
             ["Normal"] = { -- it just a normal fruit list
-                "Buddha-Buddha",
+                --"Buddha-Buddha",
                 "Ice-Ice",
                 "Light-Light",
                 "Dark-Dark",
-                -- "Flame-Flame",
+                "Flame-Flame",
                 "Magma-Magma",
                 -- u can configs add mores/remove and must end with , (comma symbol)
             }
