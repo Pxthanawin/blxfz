@@ -22,21 +22,21 @@ local run_maru = {
 }
 
 local banana_keys = {
-    ['PC-24'] = "5cd825159627a0b9e858406a",
+    ['PC-240'] = "5cd825159627a0b9e858406a",
     ['PC-250'] = "2daa0763af6a2a7b31c247ee", --pp
-    ['PC-26'] = "d94fc3686c260ead72afe0ee",
-    ['PC-27'] = "8ff0e266d9e99c03b29aefa4",
-    ['PC-29'] = "ec2879826d5e6831b1d973ae",
-    ['PC-300'] = "7832599e58fa2ff3bc6f4cc8",
-    ['PC-31'] = "bde4df67d32723790652fca5",
-    ['PC-32'] = "a62e7e044cc6801cde22047e",
-    ['PC-33'] = "4961bad421f4f21e14d8d0e9",
-    ['PC-34'] = "d315e33ed33c7a5a66346871",
-    ['PC-35'] = "44a94c9b1352d82e62481fca",
-    ['PC-36'] = "7ae7da9c819aec02114e577e",
-    ['PC-37'] = "53f90f1032025bcac2d89daa",
-    ['PC-38'] = "bc664e84da988dfa89adfb74",
-    ['PC-39'] = "1dc7942fc904eba807d46b62",
+    ['PC-260'] = "d94fc3686c260ead72afe0ee",
+    ['PC-270'] = "8ff0e266d9e99c03b29aefa4",
+    ['PC-290'] = "ec2879826d5e6831b1d973ae",
+    ['PC-300'] = "7832599e58fa2ff3bc6f4cc8", --
+    ['PC-310'] = "bde4df67d32723790652fca5",
+    ['PC-320'] = "a62e7e044cc6801cde22047e",
+    ['PC-330'] = "4961bad421f4f21e14d8d0e9",
+    ['PC-340'] = "d315e33ed33c7a5a66346871",
+    ['PC-350'] = "44a94c9b1352d82e62481fca",
+    ['PC-360'] = "7ae7da9c819aec02114e577e",
+    ['PC-370'] = "53f90f1032025bcac2d89daa",
+    ['PC-380'] = "bc664e84da988dfa89adfb74",
+    ['PC-390'] = "1dc7942fc904eba807d46b62",
 }
 
 task.spawn(function()
