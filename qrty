@@ -22,21 +22,21 @@ local run_maru = {
 }
 
 local banana_keys = {
-    ['PC-240'] = "5cd825159627a0b9e858406a",
+    ['PC-24'] = "5cd825159627a0b9e858406a",
     ['PC-250'] = "2daa0763af6a2a7b31c247ee", --pp
-    ['PC-260'] = "d94fc3686c260ead72afe0ee",
-    ['PC-270'] = "8ff0e266d9e99c03b29aefa4",
-    ['PC-290'] = "ec2879826d5e6831b1d973ae",
+    ['PC-26'] = "d94fc3686c260ead72afe0ee",
+    ['PC-27'] = "8ff0e266d9e99c03b29aefa4",
+    ['PC-29'] = "ec2879826d5e6831b1d973ae",
     ['PC-300'] = "7832599e58fa2ff3bc6f4cc8", --
-    ['PC-310'] = "bde4df67d32723790652fca5",
-    ['PC-320'] = "a62e7e044cc6801cde22047e",
-    ['PC-330'] = "4961bad421f4f21e14d8d0e9",
-    ['PC-340'] = "d315e33ed33c7a5a66346871",
-    ['PC-350'] = "44a94c9b1352d82e62481fca",
-    ['PC-360'] = "7ae7da9c819aec02114e577e",
-    ['PC-370'] = "53f90f1032025bcac2d89daa",
-    ['PC-380'] = "bc664e84da988dfa89adfb74",
-    ['PC-390'] = "1dc7942fc904eba807d46b62",
+    ['PC-31'] = "bde4df67d32723790652fca5",
+    ['PC-32'] = "a62e7e044cc6801cde22047e",
+    ['PC-33'] = "4961bad421f4f21e14d8d0e9",
+    ['PC-34'] = "d315e33ed33c7a5a66346871",
+    ['PC-35'] = "44a94c9b1352d82e62481fca",
+    ['PC-36'] = "7ae7da9c819aec02114e577e",
+    ['PC-37'] = "53f90f1032025bcac2d89daa",
+    ['PC-38'] = "bc664e84da988dfa89adfb74",
+    ['PC-39'] = "1dc7942fc904eba807d46b62",
 }
 
 task.spawn(function()
@@ -184,43 +184,109 @@ if banana_keys[PC_NAME] then
     }
     loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
 else
-    getgenv().Mode = "OneClick"
-    getgenv().Setting = {
-        ["Team"] = "Pirates", -- Options "Pirates", "Marines"
-        ["FucusOnLevel"] = true,
-        ["Fruits"] = {  -- setting for fruits u want
-            ["Primary"] = { -- if current fruit is not in this list, eat/buy
-                "Dough-Dough",
-                "Dragon-Dragon",
-                -- u can configs add mores/remove and must end with , (comma symbol)
-            },
-            ["Normal"] = { -- it just a normal fruit list
-                --"Buddha-Buddha",
-                "Ice-Ice",
-                "Light-Light",
-                "Dark-Dark",
-                "Flame-Flame",
-                "Magma-Magma",
-                -- u can configs add mores/remove and must end with , (comma symbol)
+    _G.Team = "Pirate" -- Marine / Pirate
+    getgenv().Script_Mode = "Kaitun_Script"
+    _G.MainSettings = {
+        ["EnabledHOP"] = true,
+        ['FPSBOOST'] = true,
+        ["FPSLOCKAMOUNT"] = 15,
+        ['WhiteScreen'] = true,
+        ['CloseUI'] = false,
+        ["NotifycationExPRemove"] = true,
+        ['AFKCheck'] = 150,
+        ["LockFragments"] = 20000,
+        ["LockFruitsRaid"] = {
+            [1] = "T-Rex-T-Rex",
+            [2] = "Dough-Dough",
+            [3] = "Dragon-Dragon",
+            [4] = "Kitsune-Kitsune",
+            [5] = "Mammoth-Mammoth",
+            [6] = "Tiger-Tiger",
+            [7] = "Gas-Gas",
+            [8] = "Yeti-Yeti",
+            [9] = "Gravity-Gravity",
+            [10] = "Shadow-Shadow",
+            [11] = "Venom-Venom",
+            [12] = "Control-Control",
+            [13] = "Spirit-Spirit",   
+        }
+    }
+    _G.SharkAnchor_Settings = {
+        ["Enabled_Farm"] = true,
+        ['FarmAfterMoney'] = 2500000
+    }
+    _G.Quests_Settings = {        
+        ['Rainbow_Haki'] = false,
+        ["MusketeerHat"] = true,
+        ["PullLever"] = true,
+        ['DoughQuests_Mirror'] = {
+            ['Enabled'] = true,
+            ['UseFruits'] = true
+        }        
+    }
+    _G.Races_Settings = {
+        ['Race'] = {
+            ['EnabledEvo'] = true,
+            ["v2"] = true,
+            ["v3"] = true,
+            ["Races_Lock"] = {
+                ["Races"] = {
+                    ["Mink"] = true,
+                    ["Human"] = true,
+                    ["Fishman"] = true
+                },
+                ["RerollsWhenFragments"] = 20000
             }
-            -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
-        },
-        ["Lock Fruits"] = { -- don't use or eat fruits in this list
-                "T-Rex-T-Rex",
-                -- "Dough-Dough",
-                "Kitsune-Kitsune",
-                "Mammoth-Mammoth",
-                "Tiger-Tiger",
-                "Gas-Gas",
-                "Yeti-Yeti",
-                "Gravity-Gravity",
-                "Shadow-Shadow",
-                "Venom-Venom",
-                "Control-Control",
-                "Spirit-Spirit",
-        },
-        ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
-    };
+        }
+    }
+    _G.Fruits_Settings = {
+        ['Main_Fruits'] = {''},
+        ['Select_Fruits'] = {"Magma-Magma","Light-Light","Ice-Ice","Dark-Dark"}
+    }
+    _G.Settings_Melee = {
+        ['Superhuman'] = true,
+        ['DeathStep'] = true,
+        ['SharkmanKarate'] = true,
+        ['ElectricClaw'] = true,
+        ['DragonTalon'] = true,
+        ['Godhuman'] = true
+    }
+    _G.SwordSettings = {
+        ['Saber'] = true,
+        ["Pole"] = false,
+        ['MidnightBlade'] = false,
+        ['Shisui'] = false,
+        ['Saddi'] = false,
+        ['Wando'] = false,
+        ['Yama'] = false,
+        ['Rengoku'] = false,
+        ['Canvander'] = false,
+        ['BuddySword'] = false,
+        ['TwinHooks'] = false,
+        ['HallowScryte'] = true,
+        ['TrueTripleKatana'] = false,
+        ['CursedDualKatana'] = true
+    }
+    _G.GunSettings = {
+        ['Kabucha'] = false,
+        ['SerpentBow'] = false,
+        ['SoulGuitar'] = false
+    }
+    _G.FarmMastery_Settings = {
+        ['Melee'] = true,
+        ['Sword'] = true,
+        ['DevilFruits'] = true,
+        ['Select_Swords'] = {
+            ["AutoSettings"] = true,
+            ["ManualSettings"] = {
+                "Saber",
+                "Buddy Sword"
+            }
+        }
+    }
+    _G.Hop_Settings = {
+        ["Find Tushita"] = true
+    }
 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e1c3fb1e210e932600653f256d136b6e.lua"))()
 end
