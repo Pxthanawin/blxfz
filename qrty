@@ -17,8 +17,10 @@ repeat task.wait() until game.Players
 repeat task.wait() until game.Players.LocalPlayer
 repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 
-local run_maru = {
-    ['PC-02'] = 1
+local run_quarty = {
+    ['PC-18'] = 1
+    ['PC-19'] = 1
+    ['PC-20'] = 1
 }
 
 local banana_keys = {
@@ -90,7 +92,45 @@ if PC_NAME then
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
 
-if banana_keys[PC_NAME] then
+if run_quarty[PC_NAME] then
+    getgenv().Mode = "OneClick"
+    getgenv().Setting = {
+        ["Team"] = "Pirates", -- Options "Pirates", "Marines"
+        ["FucusOnLevel"] = true,
+        ["Fruits"] = {  -- setting for fruits u want
+            ["Primary"] = { -- if current fruit is not in this list, eat/buy
+                "Dough-Dough",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            },
+            ["Normal"] = {
+                "Light-Light",
+                "Magma-Magma",
+                "Ice-Ice",
+                "Dark-Dark",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            }
+            -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
+        },
+        ["Lock Fruits"] = { -- don't use or eat fruits in this list
+            [1] = "T-Rex-T-Rex",
+            [2] = "Dough-Dough",
+            [3] = "Dragon-Dragon",
+            [4] = "Kitsune-Kitsune",
+            [5] = "Mammoth-Mammoth",
+            [6] = "Tiger-Tiger",
+            [7] = "Gas-Gas",
+            [8] = "Yeti-Yeti",
+            [9] = "Gravity-Gravity",
+            [10] = "Shadow-Shadow",
+            [11] = "Venom-Venom",
+            [12] = "Control-Control",
+            [13] = "Spirit-Spirit",
+        },
+        ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
+    };
+    getgenv().user_key = 'a80ba37569f39e5af83b57d147eb2da6'
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
+elseif banana_keys[PC_NAME] then
     getgenv().Key = banana_keys[PC_NAME]
     getgenv().SettingFarm ={
         ["Hide UI"] = false,
