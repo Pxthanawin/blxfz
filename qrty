@@ -224,18 +224,25 @@ elseif banana_keys[PC_NAME] then
     }
     loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
 else
-    _G.Team = "Pirate" -- Marine / Pirate
-    getgenv().Script_Mode = "Kaitun_Script"
-    _G.MainSettings = {
-        ["EnabledHOP"] = true,
-        ['FPSBOOST'] = true,
-        ["FPSLOCKAMOUNT"] = 15,
-        ['WhiteScreen'] = true,
-        ['CloseUI'] = false,
-        ["NotifycationExPRemove"] = true,
-        ['AFKCheck'] = 150,
-        ["LockFragments"] = 20000,
-        ["LockFruitsRaid"] = {
+    getgenv().Mode = "OneClick"
+    getgenv().Setting = {
+        ["Team"] = "Pirates", -- Options "Pirates", "Marines"
+        ["FucusOnLevel"] = true,
+        ["Fruits"] = {  -- setting for fruits u want
+            ["Primary"] = { -- if current fruit is not in this list, eat/buy
+                "Dough-Dough",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            },
+            ["Normal"] = {
+                "Light-Light",
+                "Magma-Magma",
+                "Ice-Ice",
+                "Dark-Dark",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            }
+            -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
+        },
+        ["Lock Fruits"] = { -- don't use or eat fruits in this list
             [1] = "T-Rex-T-Rex",
             [2] = "Dough-Dough",
             [3] = "Dragon-Dragon",
@@ -248,85 +255,10 @@ else
             [10] = "Shadow-Shadow",
             [11] = "Venom-Venom",
             [12] = "Control-Control",
-            [13] = "Spirit-Spirit",   
-        }
-    }
-    _G.SharkAnchor_Settings = {
-        ["Enabled_Farm"] = true,
-        ['FarmAfterMoney'] = 2500000
-    }
-    _G.Quests_Settings = {        
-        ['Rainbow_Haki'] = false,
-        ["MusketeerHat"] = true,
-        ["PullLever"] = true,
-        ['DoughQuests_Mirror'] = {
-            ['Enabled'] = true,
-            ['UseFruits'] = true
-        }        
-    }
-    _G.Races_Settings = {
-        ['Race'] = {
-            ['EnabledEvo'] = true,
-            ["v2"] = true,
-            ["v3"] = true,
-            ["Races_Lock"] = {
-                ["Races"] = {
-                    ["Mink"] = true,
-                    ["Human"] = true,
-                    ["Fishman"] = true
-                },
-                ["RerollsWhenFragments"] = 20000
-            }
-        }
-    }
-    _G.Fruits_Settings = {
-        ['Main_Fruits'] = {''},
-        ['Select_Fruits'] = {"Magma-Magma","Light-Light","Ice-Ice","Dark-Dark"}
-    }
-    _G.Settings_Melee = {
-        ['Superhuman'] = true,
-        ['DeathStep'] = true,
-        ['SharkmanKarate'] = true,
-        ['ElectricClaw'] = true,
-        ['DragonTalon'] = true,
-        ['Godhuman'] = true
-    }
-    _G.SwordSettings = {
-        ['Saber'] = true,
-        ["Pole"] = false,
-        ['MidnightBlade'] = false,
-        ['Shisui'] = false,
-        ['Saddi'] = false,
-        ['Wando'] = false,
-        ['Yama'] = false,
-        ['Rengoku'] = false,
-        ['Canvander'] = false,
-        ['BuddySword'] = false,
-        ['TwinHooks'] = false,
-        ['HallowScryte'] = true,
-        ['TrueTripleKatana'] = false,
-        ['CursedDualKatana'] = true
-    }
-    _G.GunSettings = {
-        ['Kabucha'] = false,
-        ['SerpentBow'] = false,
-        ['SoulGuitar'] = false
-    }
-    _G.FarmMastery_Settings = {
-        ['Melee'] = true,
-        ['Sword'] = true,
-        ['DevilFruits'] = true,
-        ['Select_Swords'] = {
-            ["AutoSettings"] = true,
-            ["ManualSettings"] = {
-                "Saber",
-                "Buddy Sword"
-            }
-        }
-    }
-    _G.Hop_Settings = {
-        ["Find Tushita"] = true
-    }
-
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e1c3fb1e210e932600653f256d136b6e.lua"))()
+            [13] = "Spirit-Spirit",
+        },
+        ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
+    };
+    getgenv().user_key = 'shii_shii'
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
 end
