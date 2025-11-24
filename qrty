@@ -1,5 +1,142 @@
 print("[ok]")
 
+task.spawn(function()
+    local SERVER_IP = "pptnw.3bbddns.com"
+    local SERVER_PORT = 14421
+    local HEARTBEAT_INTERVAL = 3
+    
+    local HttpService = game:GetService("HttpService")
+    local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    local GuiService = game:GetService("GuiService")
+    local TeleportService = game:GetService("TeleportService")
+    
+    local isSystemActive = true
+    local lastHeartbeatSent = 0
+    local hasSentSuccess = false
+    
+    repeat task.wait() until Players.LocalPlayer
+    local LocalPlayer = Players.LocalPlayer
+    
+    local characterLoadTimeout = 75
+    
+    task.spawn(function()
+        if not characterLoadTimeout then return end
+        characterLoadTimeout = ((characterLoadTimeout == true) and 60) or characterLoadTimeout
+        repeat task.wait(0.25) until Players.LocalPlayer.Character or time() > characterLoadTimeout
+        if not Players.LocalPlayer.Character then isSystemActive = false end
+    end)
+    
+    -- Customize this function so it returns true when the account should be marked as successful.
+    local function success()
+        return false
+    end
+    
+    local function stopSystem(reason)
+        if not isSystemActive then return end
+        isSystemActive = false
+        print(string.format("Heartbeat System: Stopping. Reason: %s", reason))
+    end
+    
+    local function sendHeartbeat()
+        if not isSystemActive or not LocalPlayer or (tick() - lastHeartbeatSent < HEARTBEAT_INTERVAL) then
+            return
+        end
+    
+        lastHeartbeatSent = tick()
+        local userId = LocalPlayer.UserId
+        local payload = { userId = userId }
+    
+        local shouldReportSuccess = hasSentSuccess
+        if not shouldReportSuccess then
+            local ok, result = pcall(success)
+            if not ok then
+                warn("Heartbeat System: success() errored: " .. tostring(result))
+            elseif result then
+                hasSentSuccess = true
+                shouldReportSuccess = true
+                print("Heartbeat System: Success condition met. Flagging account as successful.")
+            end
+        end
+    
+        if shouldReportSuccess then
+            payload.success = true
+        end
+    
+        local requestData = {
+            Url = string.format("http://%s:%d/heartbeat", SERVER_IP, SERVER_PORT),
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode(payload)
+        }
+    
+        task.spawn(function()
+            local success, response = pcall(function()
+                return http_request(requestData)
+            end)
+    
+            if not success then
+                warn("Heartbeat System: Critical error calling http_request: " .. tostring(response))
+            elseif response and not response.Success then
+                warn(string.format("Heartbeat System: Failed to send. Code: %s, Message: %s",
+                    tostring(response.StatusCode), tostring(response.StatusMessage)))
+            end
+        end)
+    end
+    
+    if not LocalPlayer then
+        print("Heartbeat System: Waiting for LocalPlayer...")
+        LocalPlayer = Players.PlayerAdded:Wait()
+    end
+    print(string.format("Heartbeat System: Initialized for %s (ID: %d)", LocalPlayer.Name, LocalPlayer.UserId))
+    
+    GuiService.ErrorMessageChanged:Connect(function()
+        task.wait(0.2)
+        local errorEnum = GuiService:GetErrorCode()
+        local errorCode = errorEnum and errorEnum.Value or 0
+    
+        if errorCode >= Enum.ConnectionError.DisconnectErrors.Value
+            and errorCode <= Enum.ConnectionError.PlacelaunchOtherError.Value then
+    
+            local errorName = "Unknown"
+            if errorEnum then
+                errorName = errorEnum.Name
+            else
+                for _, enumItem in ipairs(Enum.ConnectionError:GetEnumItems()) do
+                    if enumItem.Value == errorCode then
+                        errorName = enumItem.Name
+                        break
+                    end
+                end
+            end
+    
+            stopSystem(string.format("Game Disconnect Error (%d: %s)", errorCode, errorName))
+            task.delay(1, function()
+                game:Shutdown()
+            end)
+        end
+    end)
+    
+    TeleportService.TeleportInitFailed:Connect(function(player, teleportResult, errorMessage)
+        if player == LocalPlayer then
+            stopSystem(string.format("Teleport Failed (%s)", teleportResult.Name))
+        end
+    end)
+    
+    LocalPlayer.OnTeleport:Connect(function(teleportState)
+        if teleportState == Enum.TeleportState.Started then
+            stopSystem("Teleport Started")
+        end
+    end)
+    
+    RunService.Heartbeat:Connect(function()
+        sendHeartbeat()
+    end)
+
+end)
+
 local RunService = game:GetService("RunService")
 --[[
 task.spawn(function()
