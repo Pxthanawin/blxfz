@@ -1,105 +1,194 @@
-print("[ok]")
-
+-- ============== MERGED SYSTEM (SMART HOP + API) ==============
 task.spawn(function()
+    -- Configuration
     local SERVER_IP = "pptnw.3bbddns.com"
     local SERVER_PORT = 14421
     local HEARTBEAT_INTERVAL = 3
-    
+    local HOP_CHECK_INTERVAL = 20     -- เช็คเซิร์ฟเวอร์ซ้ำทุก 20 วินาที
+    local MAX_HOP_ATTEMPTS = 5
+    local HOP_RETRY_DELAY = 5
+
+    -- Services
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
     local RunService = game:GetService("RunService")
     local GuiService = game:GetService("GuiService")
     local TeleportService = game:GetService("TeleportService")
-    
+
+    -- State
     local isSystemActive = true
     local lastHeartbeatSent = 0
+    local lastHopCheck = 0
+    local hopAttempts = 0
     local hasSentSuccess = false
-    
+    local failedJobIds = {}
+
+    -- URLs
+    local BASE_API_URL = string.format("http://%s:%d", SERVER_IP, SERVER_PORT)
+    local HEARTBEAT_URL = BASE_API_URL .. "/heartbeat"
+    local STATUS_URL = BASE_API_URL .. "/status"
+    local ROBLOX_API_BASE_URL = "https://games.roblox.com/v1/games/" .. tostring(game.PlaceId) .. "/servers/Public?sortOrder=Asc&excludeFullGames=true&limit=100"
+
+    -- Wait for Player
     repeat task.wait() until Players.LocalPlayer
     local LocalPlayer = Players.LocalPlayer
-    
+
+    -- Character Load Timeout Logic
     local characterLoadTimeout = 75
-    
     task.spawn(function()
         if not characterLoadTimeout then return end
         characterLoadTimeout = ((characterLoadTimeout == true) and 60) or characterLoadTimeout
-        repeat task.wait(0.25) until Players.LocalPlayer.Character or time() > characterLoadTimeout
-        if not Players.LocalPlayer.Character then isSystemActive = false end
+        repeat task.wait(0.25) until LocalPlayer.Character or time() > characterLoadTimeout
+        if not LocalPlayer.Character then 
+            -- isSystemActive = false -- (Optional)
+        end
     end)
-    
-    -- Customize this function so it returns true when the account should be marked as successful.
-    local function success()
-        return false
-    end
-    
+
+    -- Helper: Stop System
     local function stopSystem(reason)
         if not isSystemActive then return end
         isSystemActive = false
-        print(string.format("Heartbeat System: Stopping. Reason: %s", reason))
+        print(string.format("System: Stopping. Reason: %s", reason))
     end
-    
-    local function sendHeartbeat()
-        if not isSystemActive or not LocalPlayer or (tick() - lastHeartbeatSent < HEARTBEAT_INTERVAL) then
-            return
+
+    -- Helper: Find Max User ID (Leader Election)
+    local function findMaxUserId(tbl)
+        local max = -1
+        for _, value in ipairs(tbl) do
+            if value > max then max = value end
         end
-    
+        return max
+    end
+
+    -- Helper: Success Condition (Customize as needed)
+    local function success()
+        return false -- ใส่เงื่อนไขเช็คความสำเร็จที่นี่
+    end
+
+    -- API: Get All Statuses
+    local function getAllStatuses()
+        local success, response = pcall(http_request, { Url = STATUS_URL, Method = "GET" })
+        if not success or not response or not response.Success then
+            warn("SmartHop: Failed to get statuses from server.")
+            return nil
+        end
+        local decodeSuccess, decodedData = pcall(HttpService.JSONDecode, HttpService, response.Body)
+        return (decodeSuccess and decodedData) and decodedData.data or nil
+    end
+
+    -- Logic: Find and Hop
+    local function findAndHopToUniqueServer(allStatuses, jobIdsToExclude)
+        if not isSystemActive then return end
+        hopAttempts = hopAttempts + 1
+        print(string.format("SmartHop: Attempt #%d to find a new server...", hopAttempts))
+        
+        local claimedJobIds = {}
+        if allStatuses then
+            for _, userData in ipairs(allStatuses) do
+                if userData.extraData and userData.extraData.jobId then
+                    claimedJobIds[userData.extraData.jobId] = true
+                end
+            end
+        end
+
+        local potentialServers = {}
+        local success, response = pcall(game.HttpGet, game, ROBLOX_API_BASE_URL, true)
+
+        if success and response then
+            local decodeSuccess, pageData = pcall(HttpService.JSONDecode, HttpService, response)
+            if decodeSuccess and pageData.data then
+                for _, serverData in ipairs(pageData.data) do
+                    if not claimedJobIds[serverData.id] and not jobIdsToExclude[serverData.id] and serverData.id ~= game.JobId and serverData.playing < serverData.maxPlayers then
+                        table.insert(potentialServers, serverData)
+                    end
+                end
+            end
+        end
+
+        if #potentialServers > 0 then
+            local targetServer = potentialServers[math.random(1, #potentialServers)]
+            print(string.format("SmartHop: Teleporting to server with %d players.", targetServer.playing))
+            stopSystem("Teleporting to new server")
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, targetServer.id, LocalPlayer)
+        else
+            print("SmartHop: No unique server found. Retrying standard hop...")
+            local PlaceId, JobId = game.PlaceId, game.JobId
+            TeleportService:Teleport(PlaceId, LocalPlayer)
+        end
+    end
+
+    -- Logic: Check Duplicates
+    local function checkForAndResolveDuplicates()
+        if not isSystemActive then return end
+
+        local allStatuses = getAllStatuses()
+        if not allStatuses then return end
+
+        local duplicatesInMyServer = { LocalPlayer.UserId }
+        for _, userData in ipairs(allStatuses) do
+            if userData.userId ~= LocalPlayer.UserId and userData.extraData and userData.extraData.jobId == game.JobId then
+                table.insert(duplicatesInMyServer, userData.userId)
+            end
+        end
+
+        if #duplicatesInMyServer > 1 then
+            local leaderId = findMaxUserId(duplicatesInMyServer)
+            print(string.format("SmartHop: Duplicate detected (%d users). Leader: %d", #duplicatesInMyServer, leaderId))
+            
+            if LocalPlayer.UserId == leaderId then
+                print("SmartHop: I am the leader. I will hop to find a free server.")
+                findAndHopToUniqueServer(allStatuses, failedJobIds)
+            else
+                print("SmartHop: I am not the leader. I will stay.")
+            end
+        end
+    end
+
+    -- Logic: Send Heartbeat
+    local function sendHeartbeat()
+        if not isSystemActive or (tick() - lastHeartbeatSent < HEARTBEAT_INTERVAL) then return end
         lastHeartbeatSent = tick()
-        local userId = LocalPlayer.UserId
-        local payload = { userId = userId }
-    
+
+        -- Check Success
         local shouldReportSuccess = hasSentSuccess
         if not shouldReportSuccess then
             local ok, result = pcall(success)
-            if not ok then
-                warn("Heartbeat System: success() errored: " .. tostring(result))
-            elseif result then
+            if ok and result then
                 hasSentSuccess = true
                 shouldReportSuccess = true
-                print("Heartbeat System: Success condition met. Flagging account as successful.")
             end
         end
-    
-        if shouldReportSuccess then
-            payload.success = true
-        end
-    
-        local requestData = {
-            Url = string.format("http://%s:%d/heartbeat", SERVER_IP, SERVER_PORT),
-            Method = "POST",
-            Headers = {
-                ["Content-Type"] = "application/json"
-            },
-            Body = HttpService:JSONEncode(payload)
+
+        -- Prepare Payload
+        local payload = {
+            userId = LocalPlayer.UserId,
+            jobId = game.JobId,
+            placeId = game.PlaceId,
+            playerName = LocalPlayer.Name,
+            success = shouldReportSuccess
         }
-    
+
         task.spawn(function()
-            local success, response = pcall(function()
-                return http_request(requestData)
-            end)
-    
-            if not success then
-                warn("Heartbeat System: Critical error calling http_request: " .. tostring(response))
-            elseif response and not response.Success then
-                warn(string.format("Heartbeat System: Failed to send. Code: %s, Message: %s",
-                    tostring(response.StatusCode), tostring(response.StatusMessage)))
-            end
+            pcall(http_request, {
+                Url = HEARTBEAT_URL,
+                Method = "POST",
+                Headers = { ["Content-Type"] = "application/json" },
+                Body = HttpService:JSONEncode(payload)
+            })
         end)
     end
+
+    -- Event Handlers
     
-    if not LocalPlayer then
-        print("Heartbeat System: Waiting for LocalPlayer...")
-        LocalPlayer = Players.PlayerAdded:Wait()
-    end
-    print(string.format("Heartbeat System: Initialized for %s (ID: %d)", LocalPlayer.Name, LocalPlayer.UserId))
-    
+    -- [[ ErrorMessageChanged แบบเก่า (ตามสคริปต์ API เดิม) ]] --
     GuiService.ErrorMessageChanged:Connect(function()
         task.wait(0.2)
         local errorEnum = GuiService:GetErrorCode()
         local errorCode = errorEnum and errorEnum.Value or 0
-    
+
         if errorCode >= Enum.ConnectionError.DisconnectErrors.Value
             and errorCode <= Enum.ConnectionError.PlacelaunchOtherError.Value then
-    
+
             local errorName = "Unknown"
             if errorEnum then
                 errorName = errorEnum.Name
@@ -111,31 +200,50 @@ task.spawn(function()
                     end
                 end
             end
-    
+
             stopSystem(string.format("Game Disconnect Error (%d: %s)", errorCode, errorName))
             task.delay(1, function()
                 game:Shutdown()
             end)
         end
     end)
-    
-    TeleportService.TeleportInitFailed:Connect(function(player, teleportResult, errorMessage)
-        if player == LocalPlayer then
-            stopSystem(string.format("Teleport Failed (%s)", teleportResult.Name))
-        end
-    end)
-    
-    LocalPlayer.OnTeleport:Connect(function(teleportState)
-        if teleportState == Enum.TeleportState.Started then
-            stopSystem("Teleport Started")
-        end
-    end)
-    
-    RunService.Heartbeat:Connect(function()
-        sendHeartbeat()
+    -- [[ จบส่วน ErrorMessageChanged แบบเก่า ]] --
+
+    TeleportService.TeleportInitFailed:Connect(function(player, teleportResult, errorMessage, placeId, jobId)
+        if player ~= LocalPlayer then return end
+        isSystemActive = true 
+        warn("SmartHop: Teleport failed: " .. errorMessage)
+        if jobId then failedJobIds[jobId] = true end
+        
+        task.wait(HOP_RETRY_DELAY)
+        local statuses = getAllStatuses()
+        findAndHopToUniqueServer(statuses or {}, failedJobIds)
     end)
 
+    LocalPlayer.OnTeleport:Connect(function(state)
+        if state == Enum.TeleportState.Started then stopSystem("Teleport Started") end
+    end)
+
+    -- Initial Check
+    print(string.format("System: Activated for %s", LocalPlayer.Name))
+    task.spawn(checkForAndResolveDuplicates)
+
+    -- Main Loop
+    RunService.Heartbeat:Connect(function()
+        if not isSystemActive then return end
+        
+        sendHeartbeat()
+
+        if (tick() - lastHopCheck > HOP_CHECK_INTERVAL) then
+            lastHopCheck = tick()
+            task.spawn(checkForAndResolveDuplicates)
+        end
+    end)
 end)
+
+-- ===========================================
+-- ส่วนด้านล่างคือ Script เกมเดิมของคุณ (ไม่เปลี่ยนแปลง)
+-- ===========================================
 
 local RunService = game:GetService("RunService")
 --[[
@@ -147,12 +255,11 @@ task.spawn(function()
     end
 end)]]
 
-
-task.wait(10)
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game.Players
 repeat task.wait() until game.Players.LocalPlayer
 repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+task.wait(5)
 
 local run_quarty = {}
 
@@ -166,9 +273,9 @@ local banana_keys = {
     ['PC-310'] = "bde4df67d32723790652fca5",
     ['PC-320'] = "a62e7e044cc6801cde22047e",
     ['PC-330'] = "4961bad421f4f21e14d8d0e9",
-    ['PC-340'] = "d315e33ed33c7a5a66346871",
-    ['PC-350'] = "44a94c9b1352d82e62481fca",
-    ['PC-360'] = "7ae7da9c819aec02114e577e",
+    ['PC-340'] = "d315e33ed33c7a5a66346871", --t
+    ['PC-350'] = "44a94c9b1352d82e62481fca", --t
+    ['PC-360'] = "7ae7da9c819aec02114e577e", --t
     ['PC-370'] = "53f90f1032025bcac2d89daa",
     ['PC-380'] = "bc664e84da988dfa89adfb74",
     ['PC-390'] = "1dc7942fc904eba807d46b62",
@@ -377,7 +484,8 @@ else
         },
         ["Lock Fruits"] = { -- don't use or eat fruits in this list
             [1] = "T-Rex-T-Rex",
-            [2] = "Dough-Dough",
+            --[2] = "Dough-Dough",
+            [2] = "Dragon-Dragon",
             [3] = "Dragon-Dragon",
             [4] = "Kitsune-Kitsune",
             [5] = "Mammoth-Mammoth",
