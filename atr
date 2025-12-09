@@ -1741,7 +1741,7 @@ if LocalPlayer.Data.Race.Value == targetRace then
     if not (LocalPlayer.Backpack:FindFirstChild(targetAbilities) or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(targetAbilities))) then
         task.spawn(function()
             repeat
-                task.wait(1)
+                task.wait(0.5)
             until LocalPlayer.Backpack:FindFirstChild(targetAbilities) or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(targetAbilities))
             CommF_:InvokeServer("TravelZou")
         end)
