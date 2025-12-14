@@ -2025,7 +2025,9 @@ if LocalPlayer.Data.Race.Value == targetRace then
                 end
             end
         end
+        return nil
     end
+    repeat task.wait(3) until CommF_:InvokeServer("SetTeam", "Marines")
     local RaceV3 = checkRaceV3()
     while RaceV3 == nil do
         RaceV3 = checkRaceV3()
