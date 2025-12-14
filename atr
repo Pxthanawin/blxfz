@@ -2026,7 +2026,12 @@ if LocalPlayer.Data.Race.Value == targetRace then
             end
         end
     end
-    if checkRaceV3 == false then
+    local RaceV3 = checkRaceV3()
+    while RaceV3 == nil do
+        RaceV3 = checkRaceV3()
+        task.wait()
+    end
+    if RaceV3 == false then
         task.spawn(function()
             repeat
                 task.wait(1)
@@ -2034,10 +2039,10 @@ if LocalPlayer.Data.Race.Value == targetRace then
             CommF_:InvokeServer("TravelZou")
         end)
         script_getv2v3()
-    elseif checkRaceV3 and game.PlaceId ~= 7449423635 then
+    elseif RaceV3 and game.PlaceId ~= 7449423635 then
         repeat task.wait(0.5) until CommF_:InvokeServer("SetTeam", "Marines")
         repeat task.wait() until CommF_:InvokeServer("TravelZou")
-    elseif checkRaceV3 then
+    elseif RaceV3 then
         script_lever()
     end
 else
