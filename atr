@@ -2036,8 +2036,8 @@ if LocalPlayer.Data.Race.Value == targetRace then
     if RaceV3 == false then
         task.spawn(function()
             repeat
-                task.wait(1)
-            until LocalPlayer.Backpack:FindFirstChild(targetAbilities) or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(targetAbilities))
+                task.wait(3)
+            until checkRaceV3()
             CommF_:InvokeServer("TravelZou")
         end)
         script_getv2v3()
