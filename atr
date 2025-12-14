@@ -1972,17 +1972,61 @@ local script_getrace = function()
 end
 
 if LocalPlayer.Data.Race.Value == targetRace then
-    local v3_abilities = {
-        Human = "Last Resort",
-        Mink = "Agility",
-        Fishman = "Water Body",
-        Skypiea = "Heavenly Blood",
-        Ghoul = "Heightened Senses",
-        Cyborg = "Energy Core",
-        Draco = "Primordial Reign"
+    local RaceTitles = {
+        ["Human"] = {
+            [1] = "Human",
+            [2] = "Unleashed",
+            [3] = "Full Power",
+            [4] = "Berserker"
+        },
+        ["Mink"] = {
+            [1] = "Rabbit",
+            [2] = "Unmatched Speed",
+            [3] = "Godspeed",
+            [4] = "Thunderbolt"
+        },
+        ["Fishman"] = {
+            [1] = "Shark",
+            [2] = "Sea Monster",
+            [3] = "Warrior of the Sea",
+            [4] = "Leviathan"
+        },
+        ["Skypiea"] = {
+            [1] = "Angel",
+            [2] = "Sacred Warrior",
+            [3] = "Perfect Being",
+            [4] = "His Majesty"
+        },
+        ["Ghoul"] = {
+            [1] = "Ghoul",
+            [2] = "The Ghoul",
+            [3] = "Hell Hound",
+            [4] = "Nightwalker"
+        },
+        ["Cyborg"] = {
+            [1] = "Cyborg",
+            [2] = "The Cyborg",
+            [3] = "War Machine",
+            [4] = "Genesis"
+        },
+        ["Draco"] = {
+            [1] = "Draco",
+            [2] = "Elder Wyrm",
+            [3] = "Ancient Flame",
+            [4] = "Primordial Guardian"
+        }
     }
-    local targetAbilities = v3_abilities[targetRace]
-    if not (LocalPlayer.Backpack:FindFirstChild(targetAbilities) or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(targetAbilities))) then
+    local checkRaceV3 = function()
+        local titles = CommF_:InvokeServer("getTitles")
+        if typeof(titles) == "table" then
+            for _, v in ipairs(titles) do
+                if RaceTitles[LocalPlayer.Data.Race.Value][3] == v.InternalName then
+                    return v.InternalName == v.Name
+                end
+            end
+        end
+    end
+    if checkRaceV3 == false then
         task.spawn(function()
             repeat
                 task.wait(1)
@@ -1990,10 +2034,10 @@ if LocalPlayer.Data.Race.Value == targetRace then
             CommF_:InvokeServer("TravelZou")
         end)
         script_getv2v3()
-    elseif game.PlaceId ~= 7449423635 then
+    elseif checkRaceV3 and game.PlaceId ~= 7449423635 then
         repeat task.wait(0.5) until CommF_:InvokeServer("SetTeam", "Marines")
         repeat task.wait() until CommF_:InvokeServer("TravelZou")
-    else
+    elseif checkRaceV3 then
         script_lever()
     end
 else
