@@ -364,7 +364,7 @@ else
         ["FucusOnLevel"] = true,
         ["Fruits"] = {  -- setting for fruits u want
             ["Primary"] = { -- if current fruit is not in this list, eat/buy
-                "Dough-Dough",
+                --"Dough-Dough",
                 -- u can configs add mores/remove and must end with , (comma symbol)
             },
             ["Normal"] = {
@@ -378,8 +378,8 @@ else
         },
         ["Lock Fruits"] = { -- don't use or eat fruits in this list
             [1] = "T-Rex-T-Rex",
-            --[2] = "Dough-Dough",
-            [2] = "Dragon-Dragon",
+            [2] = "Dough-Dough",
+            --[2] = "Dragon-Dragon",
             [3] = "Dragon-Dragon",
             [4] = "Kitsune-Kitsune",
             [5] = "Mammoth-Mammoth",
