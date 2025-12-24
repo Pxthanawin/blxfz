@@ -2041,12 +2041,12 @@ if LocalPlayer.Data.Race.Value == targetRace then
             CommF_:InvokeServer("TravelZou")
         end)
         script_getv2v3()
-    elseif RaceV3 and game.PlaceId ~= 7449423635 then
+    elseif RaceV3 then
         repeat task.wait(0.5) until CommF_:InvokeServer("SetTeam", "Marines")
         repeat task.wait() until CommF_:InvokeServer("TravelZou")
     end
 else
-    if game.PlaceId ~= 4442272183 then
+    if (game.PlaceId ~= 4442272183) or (game.PlaceId ~= 7449423635) then
         repeat task.wait(0.5) until CommF_:InvokeServer("SetTeam", "Marines")
         repeat task.wait() until CommF_:InvokeServer("TravelDressrosa")
         task.wait(5)
