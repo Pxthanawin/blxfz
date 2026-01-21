@@ -1,5 +1,6 @@
 print("[ok]")
 
+--API เอา smart hop server มารวมกับ API ตรงนี้ โดยใช้ base จากตรงนี้ แค่เพิ่มระบบ hop เข้ามา ถ้าเจอ server ซ้ำกัน
 task.spawn(function()
     local SERVER_IP = "pptnw.3bbddns.com"
     local SERVER_PORT = 14421
@@ -204,10 +205,9 @@ task.spawn(function()
     game:Shutdown()
 end)
 
---[[
 if PC_NAME then
     getgenv().Hermanos_Settings = {
-        ['key'] = '7e7b6686-593d-4306-bd3c-af5dfcab1010',
+        ['key'] = '37a23e8d-9c4d-4c44-bf82-344a77211d72',
         ['PC'] = PC_NAME,
 
         ['webhooks'] = {
@@ -224,9 +224,6 @@ if PC_NAME then
     }
 
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
-end]]
-if PC_NAME then
-_G.Config = { UserID = "32cb8ba9-9a74-4c76-a7b4-e73a3ee8fd35", discord_id = "493416262286966784" , Note = PC_NAME, } loadstring(game:HttpGet("https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"))()
 end
 
 if run_quarty[PC_NAME] then
