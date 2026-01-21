@@ -1,6 +1,3 @@
-print("[ok]")
-
---API เอา smart hop server มารวมกับ API ตรงนี้ โดยใช้ base จากตรงนี้ แค่เพิ่มระบบ hop เข้ามา ถ้าเจอ server ซ้ำกัน
 task.spawn(function()
     local SERVER_IP = "pptnw.3bbddns.com"
     local SERVER_PORT = 14421
