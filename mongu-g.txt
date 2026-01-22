@@ -377,7 +377,7 @@ else
         },
         ["Lock Fruits"] = { -- don't use or eat fruits in this list
             [1] = "T-Rex-T-Rex",
-            --[2] = "Dough-Dough",
+            [2] = "Dough-Dough",
             [2] = "Dragon-Dragon",
             [3] = "Dragon-Dragon",
             [4] = "Kitsune-Kitsune",
