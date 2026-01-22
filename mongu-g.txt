@@ -1,7 +1,7 @@
-task.wait(1)
-print("runnn")
+print("[ok]")
+
 task.spawn(function()
-    local SERVER_IP = "pptnw.3bbddns.com"
+    local SERVER_IP = "34.100.171.253"
     local SERVER_PORT = 14421
     local HEARTBEAT_INTERVAL = 3
 
