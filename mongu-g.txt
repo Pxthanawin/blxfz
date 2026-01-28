@@ -244,7 +244,7 @@ elseif tonumber((string.gsub(PC_NAME, "%D", ""))) < 81 then
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 else
     getgenv().Hermanos_Settings = {
-        ['key'] = '6a1c508e-0248-46bd-9682-458bf0791419',
+        ['key'] = '72969c00-73e6-4500-9d8f-94d4ef066c53',
         ['PC'] = PC_NAME,
 
         ['webhooks'] = {
