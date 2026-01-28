@@ -223,7 +223,7 @@ if tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
     }
 
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
-elseif tonumber((string.gsub(PC_NAME, "%D", ""))) < 81 then
+else
     getgenv().Hermanos_Settings = {
         ['key'] = '6a1c508e-0248-46bd-9682-458bf0791419',
         ['PC'] = PC_NAME,
@@ -242,6 +242,7 @@ elseif tonumber((string.gsub(PC_NAME, "%D", ""))) < 81 then
     }
 
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
+    --[[
 else
     getgenv().Hermanos_Settings = {
         ['key'] = '72969c00-73e6-4500-9d8f-94d4ef066c53',
@@ -260,7 +261,7 @@ else
         }
     }
     
-    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
+    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)]]
 end
 
 
@@ -275,6 +276,7 @@ getgenv().Setting = {
             "Yeti-Yeti",
             "T-Rex-T-Rex",
             "Gas-Gas",
+            "Mammoth-Mammoth",
             -- u can configs add mores/remove and must end with , (comma symbol)
         },
         ["Normal"] = {
@@ -287,19 +289,19 @@ getgenv().Setting = {
         -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
     },
     ["Lock Fruits"] = { -- don't use or eat fruits in this list
-        [1] = "T-Rex-T-Rex",
-        [2] = "Dough-Dough",
-        [3] = "Dragon-Dragon",
-        [4] = "Kitsune-Kitsune",
-        [5] = "Mammoth-Mammoth",
-        [6] = "Tiger-Tiger",
-        [7] = "Gas-Gas",
-        [8] = "Yeti-Yeti",
-        [9] = "Gravity-Gravity",
-        [10] = "Shadow-Shadow",
-        [11] = "Venom-Venom",
-        [12] = "Control-Control",
-        [13] = "Spirit-Spirit",
+        "Kitsune-Kitsune",
+        "Dough-Dough",
+        "Dragon-Dragon",
+        --"T-Rex-T-Rex",
+        --"Mammoth-Mammoth",
+        --"Tiger-Tiger",
+        --"Gas-Gas",
+        --"Yeti-Yeti",
+        "Gravity-Gravity",
+        "Shadow-Shadow",
+        "Venom-Venom",
+        "Control-Control",
+        "Spirit-Spirit",
     },
     ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
 };
