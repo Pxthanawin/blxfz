@@ -148,11 +148,24 @@ task.spawn(function()
 end)]]
 
 
-task.wait(10)
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until game.Players
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+local HttpService = game:GetService("HttpService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local GuiService = game:GetService("GuiService")
+local VirtualUser = game:GetService("VirtualUser")
+local tweenService = game:GetService("TweenService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+repeat task.wait() until Players.LocalPlayer
+task.wait(5)
+local LocalPlayer = Players.LocalPlayer
+
+local Backpack = LocalPlayer:WaitForChild("Backpack")
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local CommF_ = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
+local Data = LocalPlayer.Data
 
 local run_quarty = {}
 
@@ -202,6 +215,20 @@ task.spawn(function()
         end
     end)
     game:Shutdown()
+end)
+
+task.spawn(function()
+    task.wait(50)
+    task.spawn(function()
+        while not ((Data.Race.Value == 'Mink') or (Data.Race.Value == 'Human')) do
+            pcall(function()
+                if Data.Fragments.Value >= 5000 then
+                    CommF_:InvokeServer("BlackbeardReward", "Reroll", "2")
+                end
+                task.wait(1)
+            end)
+        end
+    end)
 end)
 
 if tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
