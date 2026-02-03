@@ -3,7 +3,7 @@ print("[ok]")
 task.spawn(function()
     local SERVER_IP = "34.100.164.157"
     local SERVER_PORT = 14421
-    local HEARTBEAT_INTERVAL = 3
+    local HEARTBEAT_INTERVAL = 5
 
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
