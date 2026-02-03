@@ -231,7 +231,7 @@ task.spawn(function()
     end)
 end)
 
-if tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
+if true or tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
     getgenv().Hermanos_Settings = {
         ['key'] = '37a23e8d-9c4d-4c44-bf82-344a77211d72',
         ['PC'] = PC_NAME,
