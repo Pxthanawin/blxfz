@@ -1,5 +1,3 @@
-task.wait(10)
-
 print("[ok]")
 
 task.spawn(function()
