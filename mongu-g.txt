@@ -1,3 +1,5 @@
+task.wait(10)
+
 print("[ok]")
 
 task.spawn(function()
@@ -165,7 +167,6 @@ local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
 
 repeat task.wait() until Players.LocalPlayer
-task.wait(5)
 local LocalPlayer = Players.LocalPlayer
 
 local Backpack = LocalPlayer:WaitForChild("Backpack")
