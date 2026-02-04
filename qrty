@@ -1,10 +1,10 @@
 print("[ok]")
 
+--API เอา smart hop server มารวมกับ API ตรงนี้ โดยใช้ base จากตรงนี้ แค่เพิ่มระบบ hop เข้ามา ถ้าเจอ server ซ้ำกัน
 task.spawn(function()
-    local SERVER_IP = "127.0.0.1"
-
+    local SERVER_IP = "pptnw.3bbddns.com"
     local SERVER_PORT = 14421
-    local HEARTBEAT_INTERVAL = 5
+    local HEARTBEAT_INTERVAL = 3
 
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
@@ -149,6 +149,7 @@ task.spawn(function()
 end)]]
 
 
+task.wait(10)
 local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -160,6 +161,7 @@ local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
 
 repeat task.wait() until Players.LocalPlayer
+task.wait(5)
 local LocalPlayer = Players.LocalPlayer
 
 local Backpack = LocalPlayer:WaitForChild("Backpack")
@@ -231,9 +233,9 @@ task.spawn(function()
     end)
 end)
 
-if true or tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
+if PC_NAME then
     getgenv().Hermanos_Settings = {
-        ['key'] = '37a23e8d-9c4d-4c44-bf82-344a77211d72',
+        ['key'] = '7e7b6686-593d-4306-bd3c-af5dfcab1010',
         ['PC'] = PC_NAME,
 
         ['webhooks'] = {
@@ -245,93 +247,181 @@ if true or tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain'
         }
     }
 
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
-else
-    getgenv().Hermanos_Settings = {
-        ['key'] = '6a1c508e-0248-46bd-9682-458bf0791419',
-        ['PC'] = PC_NAME,
-
-        ['webhooks'] = {
-            ['fullmoon'] = 'https://discord.com/api/webhooks/',
-            ['mirage'] = 'https://discord.com/api/webhooks/',
-        },
-        ['Sword'] = {'Cursed Dual Katana', 'Shark Anchor', 'Tushita', 'Yama', 'Dark Dagger', 'Hallow Scythe', 'Saber'},
-        ['Gun'] = {'Soul Guitar', 'Serpent Bow', 'Kabucha', 'Acidum Rifle'},
-        ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
-        ['Fruit'] = {
-            'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
-        }
-    }
-
-    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
-    --[[
-else
-    getgenv().Hermanos_Settings = {
-        ['key'] = '72969c00-73e6-4500-9d8f-94d4ef066c53',
-        ['PC'] = PC_NAME,
-
-        ['webhooks'] = {
-            ['fullmoon'] = 'https://discord.com/api/webhooks/',
-            ['mirage'] = 'https://discord.com/api/webhooks/',
-        },
-        ['Sword'] = {'Cursed Dual Katana', 'Shark Anchor', 'Tushita', 'Yama', 'Dark Dagger', 'Hallow Scythe', 'Saber'},
-        ['Gun'] = {'Soul Guitar', 'Serpent Bow', 'Kabucha', 'Acidum Rifle'},
-        ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
-        ['Fruit'] = {
-            'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
-        }
-    }
-    
-    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)]]
 end
 
-
-getgenv().Mode = "OneClick"
-getgenv().Setting = {
-    ["Team"] = "Pirates", -- Options "Pirates", "Marines"
-    ["FucusOnLevel"] = true,
-    ["Fruits"] = {  -- setting for fruits u want
-        ["Primary"] = { -- if current fruit is not in this list, eat/buy
-            "Kitsune-Kitsune",
-            "Dough-Dough",
-            "Tiger-Tiger",
-            "Yeti-Yeti",
-            "T-Rex-T-Rex",
-            "Gas-Gas",
-            "Mammoth-Mammoth",
-            -- u can configs add mores/remove and must end with , (comma symbol)
+if run_quarty[PC_NAME] then
+    getgenv().Mode = "OneClick"
+    getgenv().Setting = {
+        ["Team"] = "Pirates", -- Options "Pirates", "Marines"
+        ["FucusOnLevel"] = true,
+        ["Fruits"] = {  -- setting for fruits u want
+            ["Primary"] = { -- if current fruit is not in this list, eat/buy
+                "Dough-Dough",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            },
+            ["Normal"] = {
+                "Light-Light",
+                "Magma-Magma",
+                "Ice-Ice",
+                "Dark-Dark",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            }
+            -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
         },
-        ["Normal"] = {
-            "Light-Light",
-            "Magma-Magma",
-            "Ice-Ice",
-            "Dark-Dark",
-            -- u can configs add mores/remove and must end with , (comma symbol)
+        ["Lock Fruits"] = { -- don't use or eat fruits in this list
+            [1] = "T-Rex-T-Rex",
+            [2] = "Dough-Dough",
+            [3] = "Dragon-Dragon",
+            [4] = "Kitsune-Kitsune",
+            [5] = "Mammoth-Mammoth",
+            [6] = "Tiger-Tiger",
+            [7] = "Gas-Gas",
+            [8] = "Yeti-Yeti",
+            [9] = "Gravity-Gravity",
+            [10] = "Shadow-Shadow",
+            [11] = "Venom-Venom",
+            [12] = "Control-Control",
+            [13] = "Spirit-Spirit",
+        },
+        ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
+    };
+    getgenv().user_key = 'a80ba37569f39e5af83b57d147eb2da6'
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
+elseif banana_keys[PC_NAME] then
+    getgenv().Key = banana_keys[PC_NAME]
+    getgenv().SettingFarm ={
+        ["Hide UI"] = false,
+        ["Reset Teleport"] = {
+            ["Enabled"] = false,
+            ["Delay Reset"] = 3,
+            ["Item Dont Reset"] = {
+                ["Fruit"] = {
+                    ["Enabled"] = true,
+                    ["All Fruit"] = true,
+                    ["Select Fruit"] = {
+                        ["Enabled"] = false,
+                        ["Fruit"] = {},
+                    },
+                },
+            },
+        },
+        ["White Screen"] = false,
+        ["Lock Fps"] = {
+            ["Enabled"] = false,
+            ["FPS"] = 12,
+        },
+        ["Get Items"] = {
+            ["Saber"] = true,
+            ["Godhuman"] =  true,
+            ["Skull Guitar"] = false,
+            ["Mirror Fractal"] = true,
+            ["Cursed Dual Katana"] = true,
+            ["Upgrade Race V2-V3"] = true,
+            ["Auto Pull Lever"] = true,
+            ["Shark Anchor"] = false,
+        },
+        ["Get Rare Items"] = {
+            ["Rengoku"] = false,
+            ["Dragon Trident"] = false,
+            ["Pole (1st Form)"] = false,
+            ["Gravity Blade"]  = false,
+        },
+        ["Farm Fragments"] = {
+            ["Enabled"]  = true,
+            ["Fragment"] = 50000,
+        },
+        ["Auto Chat"] = {
+            ["Enabled"] = false,
+            ["Text"] = "SirMadri - Dominando o mercado.",
+        },
+        ["Auto Summon Rip Indra"] = true,
+        ["Select Hop"] = {
+            ["Hop Server If Have Player Near"] = false,
+            ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = true,
+            ["Hop Find Dough King Get Mirror Fractal"] = false,
+            ["Hop Find Raids Castle [CDK]"] = false,
+            ["Hop Find Cake Queen [CDK]"] = false,
+            ["Hop Find Soul Reaper [CDK]"] = false,
+            ["Hop Find Darkbeard [SG]"] = false,
+            ["Hop Find Mirage [ Pull Lever ]"] = false,
+        },
+        ["Farm Mastery"] = {
+            ["Melee"] = false,
+            ["Sword"] = false,
+        },
+        ["Buy Haki"] = {
+            ["Enhancement"] = true,
+            ["Skyjump"] = true,
+            ["Flash Step"] = true,
+            ["Observation"] = true,
+        },
+        ["Sniper Fruit Shop"] = {
+            ["Enabled"] = true,
+            ["Fruit"] = {"Tiger-Tiger","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
+        },
+        ["Lock Fruits"] = {
+            [1] = "T-Rex-T-Rex",
+            [2] = "Dough-Dough",
+            [3] = "Dragon-Dragon",
+            [4] = "Kitsune-Kitsune",
+            [5] = "Mammoth-Mammoth",
+            [6] = "Tiger-Tiger",
+            [7] = "Gas-Gas",
+            [8] = "Yeti-Yeti",
+            [9] = "Gravity-Gravity",
+            [10] = "Shadow-Shadow",
+            [11] = "Venom-Venom",
+            [12] = "Control-Control",
+            [13] = "Spirit-Spirit",
+        },
+        ["Webhook"] = {
+            ["Enabled"] = false,
+            ["WebhookUrl"] = "",
         }
-        -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
-    },
-    ["Lock Fruits"] = { -- don't use or eat fruits in this list
-        "Kitsune-Kitsune",
-        "Dough-Dough",
-        "Dragon-Dragon",
-        --"T-Rex-T-Rex",
-        --"Mammoth-Mammoth",
-        --"Tiger-Tiger",
-        --"Gas-Gas",
-        --"Yeti-Yeti",
-        "Gravity-Gravity",
-        "Shadow-Shadow",
-        "Venom-Venom",
-        "Control-Control",
-        "Spirit-Spirit",
-    },
-    ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
-};
-getgenv().user_key = 'd3a2f9baa8e3a58cb85bb0b2039e4a92'
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
+else
+    getgenv().Mode = "OneClick"
+    getgenv().Setting = {
+        ["Team"] = "Pirates", -- Options "Pirates", "Marines"
+        ["FucusOnLevel"] = true,
+        ["Fruits"] = {  -- setting for fruits u want
+            ["Primary"] = { -- if current fruit is not in this list, eat/buy
+                "Dough-Dough",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            },
+            ["Normal"] = {
+                "Light-Light",
+                "Magma-Magma",
+                "Ice-Ice",
+                "Dark-Dark",
+                -- u can configs add mores/remove and must end with , (comma symbol)
+            }
+            -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
+        },
+        ["Lock Fruits"] = { -- don't use or eat fruits in this list
+            [1] = "T-Rex-T-Rex",
+            --[2] = "Dough-Dough",
+            [2] = "Dragon-Dragon",
+            [3] = "Dragon-Dragon",
+            [4] = "Kitsune-Kitsune",
+            [5] = "Mammoth-Mammoth",
+            [6] = "Tiger-Tiger",
+            [7] = "Gas-Gas",
+            [8] = "Yeti-Yeti",
+            [9] = "Gravity-Gravity",
+            [10] = "Shadow-Shadow",
+            [11] = "Venom-Venom",
+            [12] = "Control-Control",
+            [13] = "Spirit-Spirit",
+        },
+        ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
+    };
+    getgenv().user_key = 'shii_shii'
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
+end
