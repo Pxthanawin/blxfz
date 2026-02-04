@@ -170,7 +170,7 @@ local LocalPlayer = Players.LocalPlayer
 local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local CommF_ = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
-local Data = LocalPlayer.Data
+local Data = LocalPlayer:WaitForChild("Data")
 
 local run_quarty = {}
 
