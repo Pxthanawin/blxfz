@@ -1,7 +1,13 @@
 print("[ok]")
 
 task.spawn(function()
-    local SERVER_IP = "34.100.164.157"
+    local SERVER_IP
+    if PC_NAME == "PC-01" then
+        SERVER_IP = "127.0.0.1"
+    else
+        SERVER_IP = "34.100.164.157"
+    end
+
     local SERVER_PORT = 14421
     local HEARTBEAT_INTERVAL = 5
 
