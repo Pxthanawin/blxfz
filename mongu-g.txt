@@ -305,20 +305,22 @@ getgenv().Setting = {
             "T-Rex-T-Rex",
             "Gas-Gas",
             "Mammoth-Mammoth",
+            "Dragon-Dragon",
             -- u can configs add mores/remove and must end with , (comma symbol)
         },
         ["Normal"] = {
-            "Light-Light",
-            "Magma-Magma",
-            "Ice-Ice",
-            "Dark-Dark",
+            "Buddha-Buddha",
+            --"Light-Light",
+            --"Magma-Magma",
+            --"Ice-Ice",
+            --"Dark-Dark",
             -- u can configs add mores/remove and must end with , (comma symbol)
         }
         -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
     },
     ["Lock Fruits"] = { -- don't use or eat fruits in this list
         "Kitsune-Kitsune",
-        "Dough-Dough",
+        --"Dough-Dough",
         "Dragon-Dragon",
         --"T-Rex-T-Rex",
         --"Mammoth-Mammoth",
