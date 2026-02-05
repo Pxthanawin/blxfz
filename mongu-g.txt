@@ -217,6 +217,7 @@ task.spawn(function()
     game:Shutdown()
 end)
 
+--[[
 task.spawn(function()
     task.wait(50)
     task.spawn(function()
@@ -229,7 +230,7 @@ task.spawn(function()
             end)
         end
     end)
-end)
+end)]]
 
 if tonumber((string.gsub(PC_NAME, "%D", ""))) < 41 then
     getgenv().Hermanos_Settings = {
