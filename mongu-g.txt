@@ -319,13 +319,13 @@ getgenv().Setting = {
         -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
     },
     ["Lock Fruits"] = { -- don't use or eat fruits in this list
-        "Kitsune-Kitsune",
-        --"Dough-Dough",
+        --"Kitsune-Kitsune",
+        "Dough-Dough",
         "Dragon-Dragon",
         --"T-Rex-T-Rex",
         --"Mammoth-Mammoth",
         --"Tiger-Tiger",
-        --"Gas-Gas",
+        "Gas-Gas",
         --"Yeti-Yeti",
         "Gravity-Gravity",
         "Shadow-Shadow",
