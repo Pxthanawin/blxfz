@@ -1,10 +1,9 @@
 print("[ok]")
 
---API เอา smart hop server มารวมกับ API ตรงนี้ โดยใช้ base จากตรงนี้ แค่เพิ่มระบบ hop เข้ามา ถ้าเจอ server ซ้ำกัน
 task.spawn(function()
-    local SERVER_IP = "pptnw.3bbddns.com"
+    local SERVER_IP = "127.0.0.1"
     local SERVER_PORT = 14421
-    local HEARTBEAT_INTERVAL = 3
+    local HEARTBEAT_INTERVAL = 5
 
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
