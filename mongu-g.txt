@@ -284,7 +284,7 @@ else
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha', 'Portal'
         }
     }
     
@@ -319,12 +319,12 @@ getgenv().Setting = {
         -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
     },
     ["Lock Fruits"] = { -- don't use or eat fruits in this list
-        --"Kitsune-Kitsune",
+        "Kitsune-Kitsune",
         "Dough-Dough",
         "Dragon-Dragon",
         --"T-Rex-T-Rex",
         --"Mammoth-Mammoth",
-        --"Tiger-Tiger",
+        "Tiger-Tiger",
         "Gas-Gas",
         --"Yeti-Yeti",
         "Gravity-Gravity",
