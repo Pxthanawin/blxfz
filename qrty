@@ -27,7 +27,6 @@ task.spawn(function()
         if not Players.LocalPlayer.Character then isSystemActive = false end
     end)
 
-    -- Customize this function so it returns true when the account should be marked as successful.
     local function success()
         return false
     end
@@ -273,19 +272,19 @@ if run_quarty[PC_NAME] then
             -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
         },
         ["Lock Fruits"] = { -- don't use or eat fruits in this list
-            [1] = "T-Rex-T-Rex",
-            [2] = "Dough-Dough",
-            [3] = "Dragon-Dragon",
-            [4] = "Kitsune-Kitsune",
-            [5] = "Mammoth-Mammoth",
-            [6] = "Tiger-Tiger",
-            [7] = "Gas-Gas",
-            [8] = "Yeti-Yeti",
-            [9] = "Gravity-Gravity",
-            [10] = "Shadow-Shadow",
-            [11] = "Venom-Venom",
-            [12] = "Control-Control",
-            [13] = "Spirit-Spirit",
+            "T-Rex-T-Rex",
+            --"Dough-Dough",
+            "Dragon-Dragon",
+            "Kitsune-Kitsune",
+            "Mammoth-Mammoth",
+            "Tiger-Tiger",
+            "Gas-Gas",
+            "Yeti-Yeti",
+            "Gravity-Gravity",
+            "Shadow-Shadow",
+            "Venom-Venom",
+            "Control-Control",
+            "Spirit-Spirit",
         },
         ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
     };
