@@ -246,7 +246,7 @@ if tonumber((string.gsub(PC_NAME, "%D", ""))) <= 41 then
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha', 'Portal'
         }
     }
 
@@ -265,7 +265,7 @@ elseif tonumber((string.gsub(PC_NAME, "%D", ""))) <= 83 then
         ['Accessories'] = {'Dark Coat', 'Leviathan Shield', 'Leviathan Crown', 'Pale Scarf', 'Kitsune Mask', 'Kitsune Ribbon'},
         ['Fruit'] = {
             'Kitsune', 'Tiger', 'Dragon (West)', 'Spirit', 'Control', 'Venom', 'Gas', 'Yeti',
-            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha'
+            'Shadow', 'Dough', 'Mammoth', 'T-Rex', 'Dragon (East)', 'Lightning', 'Gravity', 'Pain', 'Sadness Pain', 'Torment Pain', 'Frustration Pain', 'Buddha', 'Portal'
         }
     }
 
