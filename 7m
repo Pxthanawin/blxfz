@@ -353,7 +353,7 @@ end)
 task.spawn(function()
 task.wait(10)
 getgenv().Hermanos_Settings = {
-    ['key'] = 'baa79b4b-b21a-47d8-afa4-de005fa84a93',
+    ['key'] = '2f6bfd2a-dfa2-4b84-94e4-8f30dffdc4c8',
   ['PC'] = PC_NAME,
 }
 task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
