@@ -1,5 +1,12 @@
 print("[ok]")
 
+task.spawn(function()
+    setfpscap(10)
+    while task.wait(6) do
+        setfpscap(10)
+    end
+end)
+
 if PC_NAME then
     getgenv().Hermanos_Settings = {
         ['key'] = '7e7b6686-593d-4306-bd3c-af5dfcab1010',
