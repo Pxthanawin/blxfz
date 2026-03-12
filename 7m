@@ -352,9 +352,14 @@ end)
 
 task.spawn(function()
 task.wait(10)
+--[[
 getgenv().Hermanos_Settings = {
     ['key'] = '2f6bfd2a-dfa2-4b84-94e4-8f30dffdc4c8',
   ['PC'] = PC_NAME,
 }
-task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
+task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)]]
+
+_G.Config={UserID="cb19b862-6e57-441e-aa6b-16fc957e96ac", discord_id="741272933082595470", Note=PC_NAME}
+local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/trackstatblox"))()end)if s then break end wait(5)end
+
 end)
