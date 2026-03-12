@@ -1,9 +1,9 @@
 print("[ok]")
 
 task.spawn(function()
-    setfpscap(10)
+    setfpscap(15)
     while task.wait(6) do
-        setfpscap(10)
+        setfpscap(15)
     end
 end)
 
