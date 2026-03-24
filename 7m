@@ -359,7 +359,11 @@ getgenv().Hermanos_Settings = {
 }
 task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)]]
 
-_G.Config={UserID="cb19b862-6e57-441e-aa6b-16fc957e96ac", discord_id="741272933082595470", Note=PC_NAME}
+_G.Config={
+UserID="7b4e88b3-57ee-4850-b2a7-04e474576fde",
+discord_id="812909971997589535",
+Note=PC_NAME
+}
 local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/trackstatblox"))()end)if s then break end wait(5)end
 
 end)
