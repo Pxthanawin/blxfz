@@ -1,4 +1,11 @@
 task.spawn(function()
+    setfpscap(8)
+    while task.wait(6) do
+        setfpscap(8)
+    end
+end)
+
+task.spawn(function()
 -- Configuration
 local SERVER_HOST = "localhost"
 local SERVER_PORT = 8766
