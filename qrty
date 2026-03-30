@@ -255,6 +255,7 @@ task.spawn(function()
     end)
 end)
 
+--[[
 if run_quarty[PC_NAME] then
     getgenv().Mode = "OneClick"
     getgenv().Setting = {
@@ -429,3 +430,32 @@ else
     getgenv().user_key = 'shii_shii'
     loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
 end
+]]
+
+_G.OneClickSettings = {
+    ["MainIsFarmLevel"] = true,
+    ["LockFruits"] = {
+        "Dough-Dough",
+        "Dragon-Dragon",
+        "Yeti-Yeti",
+	"Kitsune-Kitsune",
+	"T-Rex-T-Rex",
+	"Shadow-Shadow",
+	"Tiger-Tiger"
+    },
+    ["MainFruits"] = {
+        "Dough-Dough" 
+    },
+    ["RegularFruits"] = {
+        "Flame-Flame",
+        "Magmag-Magma",
+        "Dark-Dark",
+        "Light-Light"
+    },
+    ["FragmentsCap"] = 50000,
+    ["Upgrade Race"] = true,
+    ["Pull Lever"] = true,
+    ["Farm Shark Anchor"] = true,
+    ["Cursed Dual Katana"] = true
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/e1c3fb1e210e932600653f256d136b6e.lua"))()
