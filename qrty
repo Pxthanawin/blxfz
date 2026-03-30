@@ -16,6 +16,8 @@ task.spawn(function()
     end
 end)
 
+task.spawn(function()
+    task.wait(20)
 if PC_NAME then
     getgenv().Hermanos_Settings = {
         ['key'] = '7e7b6686-593d-4306-bd3c-af5dfcab1010',
@@ -23,6 +25,7 @@ if PC_NAME then
     }
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
+end)
 
 task.spawn(function()
     local SERVER_IP = "127.0.0.1"
