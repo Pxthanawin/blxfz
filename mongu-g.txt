@@ -298,7 +298,7 @@ else
     task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
 end
 
-
+--[[
 getgenv().Mode = "OneClick"
 getgenv().Setting = {
     ["Team"] = "Pirates", -- Options "Pirates", "Marines"
@@ -342,3 +342,46 @@ getgenv().Setting = {
 };
 getgenv().user_key = 'd3a2f9baa8e3a58cb85bb0b2039e4a92'
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
+]]
+
+_G.OneClickSettings = {
+    ["MainIsFarmLevel"] = true,
+    ["LockFruits"] = {
+        --"Kitsune-Kitsune",
+        "Dough-Dough",
+        "Dragon-Dragon",
+        "T-Rex-T-Rex",
+        "Mammoth-Mammoth",
+        --"Tiger-Tiger",
+        "Gas-Gas",
+        "Yeti-Yeti",
+        "Gravity-Gravity",
+        "Shadow-Shadow",
+        "Venom-Venom",
+        "Control-Control",
+        "Spirit-Spirit",
+    },
+    ["MainFruits"] = {
+        "Kitsune-Kitsune",
+        "Dough-Dough",
+        "Tiger-Tiger",
+        "Yeti-Yeti",
+        --"T-Rex-T-Rex",
+        "Gas-Gas",
+        --"Mammoth-Mammoth",
+        "Dragon-Dragon",
+    },
+    ["RegularFruits"] = {
+        "Buddha-Buddha",
+        "Light-Light",
+        "Magma-Magma",
+        "Ice-Ice",
+        "Dark-Dark",
+    },
+    ["FragmentsCap"] = 50000,
+    ["Upgrade Race"] = true,
+    ["Pull Lever"] = true,
+    ["Farm Shark Anchor"] = true,
+    ["Cursed Dual Katana"] = true
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/e1c3fb1e210e932600653f256d136b6e.lua"))()
