@@ -351,13 +351,7 @@ print("--- Heartbeat Script Initialized and Running (with Race Check) ---")
 end)
 
 task.spawn(function()
-task.wait(10)
---[[
-getgenv().Hermanos_Settings = {
-    ['key'] = '2f6bfd2a-dfa2-4b84-94e4-8f30dffdc4c8',
-  ['PC'] = PC_NAME,
-}
-task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)]]
+task.wait(15)
 
 _G.Config={
 UserID="7b4e88b3-57ee-4850-b2a7-04e474576fde",
