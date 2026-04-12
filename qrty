@@ -1,15 +1,6 @@
 print("[ok]")
 
 task.spawn(function()
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
-if not game:IsLoaded() then game.Loaded:Wait() end
-
-_G.Key = "PP"
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/1703a94a765f93c96ae31baa4385cdd2.lua"))()
-end)
-
-task.spawn(function()
     setfpscap(15)
     while task.wait(6) do
         setfpscap(15)
@@ -190,6 +181,11 @@ local Backpack = LocalPlayer:WaitForChild("Backpack")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local CommF_ = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
 local Data = LocalPlayer:WaitForChild("Data")
+
+task.spawn(function()
+_G.Key = "PP"
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/1703a94a765f93c96ae31baa4385cdd2.lua"))()
+end)
 
 local run_quarty = {}
 
