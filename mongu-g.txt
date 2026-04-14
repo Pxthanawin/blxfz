@@ -39,13 +39,6 @@ end)
 
 -- Customize this function so it returns true when the account should be marked as successful.
 local function success()
-    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("RaceFolder") and (LocalPlayer.Character.RaceFolder:FindFirstChild("Angel") or LocalPlayer.Character.RaceFolder:FindFirstChild("Demon")) then
-        return true
-    else
-        if not ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("RaceService"):WaitForChild("RF"):WaitForChild("Reroll"):InvokeServer() then
-            return true
-        end
-    end
     return false
 end
 
@@ -153,6 +146,7 @@ end)
 RunService.Heartbeat:Connect(function()
     sendHeartbeat()
 end)
+
 
 
 end)
