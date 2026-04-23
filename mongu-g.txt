@@ -345,5 +345,5 @@ getgenv().Setting = {
     },
     ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
 };
-getgenv().user_key = 'd3a2f9baa8e3a58cb85bb0b2039e4a92'
+getgenv().license_key = 'd3a2f9baa8e3a58cb85bb0b2039e4a92'
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/OneClick/BF.lua"))()
