@@ -10,7 +10,7 @@ end)
 task.spawn(function()
     repeat task.wait(1) until workspace:GetAttribute("MAP")
     if workspace:GetAttribute("MAP") == "Sea3" then
-        local SERVER_IP = "pptnw.3bbddns.com"
+        local SERVER_IP = "127.0.0.1"
         local SERVER_PORT = 14421
         local HEARTBEAT_INTERVAL = 10
 
