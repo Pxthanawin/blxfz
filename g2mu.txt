@@ -1,0 +1,32 @@
+getgenv().Configuration = {
+    SeedName = "all",
+    DelayTime = 0.5,
+    InfinitePlanting = true,
+    BatchSize = 50,
+
+    AutoShovelCheap = false,
+    ShovelThresholdPrice = 1000,
+    KeepSeeds = {"Dragon's Breath", "Moon Bloom"},
+
+    BuySeedOnFull = "Dragon's Breath",
+    BuySeedOnFullLimit = 100,
+
+    AutoReinvest = false,
+    AutoExpandPlot = true,
+
+    AutoBuyGear = true,
+    BuyGearList = {"Diamond Shovel", "Master Sprinkler", "Godly Sprinkler"},
+
+    AutoPlaceSprinklers = false,
+
+    -- ==================== [ Pets ] ====================
+    AutoBuyPets = true,                                        -- เปิดซื้อ pet
+    BuyPets = {"Raccoon", "Unicorn", "BlackDragon", "IceSerpent"}, -- ซื้อเฉพาะตัวนี้
+
+    Horst = false,
+    HorstShowItems = {"Gold", "Rainbow", "Dragon's Breath"},
+}
+
+script_key = "HExPRIwEWOvEryNNoVTioPEUPqEAFYdw"; 
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/f5f746e97e3e16a8f21c6c29e5699d39.lua"))()
+
