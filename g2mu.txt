@@ -199,6 +199,7 @@ local Players = game:GetService("Players")
 local PacketFramework = require(game:GetService("ReplicatedStorage"):WaitForChild("SharedModules"):WaitForChild("Packet"))
 
 task.spawn(function()
+    task.wait(60)
     print("⏳ [Auto Mail Loop] Initialization complete! Checking Backpack every " .. tostring(LOOP_INTERVAL) .. " seconds...")
     
     -- Pre-resolve the target User ID to prevent API request spamming inside the loop
