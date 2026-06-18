@@ -154,7 +154,7 @@ end)
 -- CONFIGURATION: Set your auto mail preferences here
 -- =================================================================
 local TARGET_NAME   = "7354834033"        -- Target username (or raw User ID)
-local LOOP_INTERVAL = 120                    -- Interval between checks in seconds (60 = 1 minute)
+local LOOP_INTERVAL = 600                    -- Interval between checks in seconds (60 = 1 minute)
 local MAIL_NOTE     = ""                    -- Optional message attached to the mail
 
 -- 📦 List of seeds that the system will automatically sweep and send
