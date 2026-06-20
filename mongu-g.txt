@@ -3,14 +3,6 @@ print("[ok]")
 local RunService = game:GetService("RunService")
 
 task.spawn(function()
-    while task.wait(3) do
-        RunService:Set3dRenderingEnabled(true)
-        task.wait(0.1)
-        RunService:Set3dRenderingEnabled(false)
-    end
-end)
-
-task.spawn(function()
 -- Must match HttpServer.local_server.host/port in config.json
 local SERVER_IP = "10.0.2.2"
 local SERVER_PORT = 14421
