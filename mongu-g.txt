@@ -1,10 +1,15 @@
 print("[ok]")
 
-local RunService = game:GetService("RunService")
+task.spawn(function()
+    setfpscap(10)
+    while task.wait(6) do
+        setfpscap(10)
+    end
+end)
 
 task.spawn(function()
 -- Must match HttpServer.local_server.host/port in config.json
-local SERVER_IP = "10.0.2.2"
+local SERVER_IP = "127.0.0.1"
 local SERVER_PORT = 14421
 local HEARTBEAT_INTERVAL = 3
 
@@ -312,10 +317,11 @@ getgenv().Setting = {
             "Gas-Gas",
             "Dragon-Dragon",
             "T-Rex-T-Rex",
+            "Buddha-Buddha",
             -- u can configs add mores/remove and must end with , (comma symbol)
         },
         ["Normal"] = {
-            "Buddha-Buddha",
+            
             "Light-Light",
             "Magma-Magma",
             "Ice-Ice",
