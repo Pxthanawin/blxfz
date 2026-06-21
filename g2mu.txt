@@ -7,7 +7,7 @@ end)
 
 task.spawn(function()
 -- Must match HttpServer.local_server.host/port in config.json
-local SERVER_IP = "172.0.0.1"
+local SERVER_IP = "127.0.0.1"
 local SERVER_PORT = 14421
 local HEARTBEAT_INTERVAL = 3
 
