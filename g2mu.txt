@@ -1,16 +1,13 @@
-local RunService = game:GetService("RunService")
-
 task.spawn(function()
-    while task.wait(3) do
-        RunService:Set3dRenderingEnabled(true)
-        task.wait(0.1)
-        RunService:Set3dRenderingEnabled(false)
+    setfpscap(10)
+    while task.wait(6) do
+        setfpscap(10)
     end
 end)
 
 task.spawn(function()
 -- Must match HttpServer.local_server.host/port in config.json
-local SERVER_IP = "10.0.2.2"
+local SERVER_IP = "172.0.0.1"
 local SERVER_PORT = 14421
 local HEARTBEAT_INTERVAL = 3
 
@@ -153,7 +150,7 @@ end)
 -- =================================================================
 -- CONFIGURATION: Set your auto mail preferences here
 -- =================================================================
-local TARGET_NAME   = "8562266680"        -- Target username (or raw User ID)
+local TARGET_NAME   = "9020153113"        -- Target username (or raw User ID)
 local LOOP_INTERVAL = 3600                    -- Interval between checks in seconds (60 = 1 minute)
 local MAIL_NOTE     = ""                    -- Optional message attached to the mail
 
@@ -258,35 +255,90 @@ task.spawn(function()
     end
 end)
 
-getgenv().Configuration = {
-    SeedName = "all",
-    DelayTime = 0.5,
-    InfinitePlanting = true,
-    BatchSize = 50,
+task.spawn(function()
+    _G.Config={UserID="cb19b862-6e57-441e-aa6b-16fc957e96ac",discord_id="741272933082595470",Note=PC_NAME}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/gag2"))()end)if s then break end wait(5)end
+end)
 
-    AutoShovelCheap = false,
-    ShovelThresholdPrice = 1000,
-    KeepSeeds = {"Dragon's Breath", "Moon Bloom"},
-
-    BuySeedOnFull = "Dragon's Breath",
-    BuySeedOnFullLimit = 100,
-
-    AutoReinvest = false,
-    AutoExpandPlot = true,
-
-    AutoBuyGear = true,
-    BuyGearList = {"Diamond Shovel", "Master Sprinkler", "Godly Sprinkler"},
-
-    AutoPlaceSprinklers = false,
-
-    -- ==================== [ Pets ] ====================
-    AutoBuyPets = true,                                        -- เปิดซื้อ pet
-    BuyPets = {"Raccoon", "Unicorn", "BlackDragon", "IceSerpent"}, -- ซื้อเฉพาะตัวนี้
-
-    Horst = false,
-    HorstShowItems = {"Gold", "Rainbow", "Dragon's Breath"},
+local PC_KEYS = {
+    ["PC-44"]  = "kZnLEdaRUUAtKQCRuEENLPGspItSzRLh",
+    ["PC-71"]  = "YeJBosDHGGNRJxpmHvFelgjMNJcQKoNm",
+    ["PC-85"]  = "AaAsVtspBeJerIcOFjyAlllPkKchaVvV",
+    ["PC-93"]  = "PeXhAneuQXamSKdiffMvshMkkHEyoNjX",
+    ["PC-95"]  = "zgagKZYpSfGpBvVWkpBrGKLPBfKIRChT",
+    ["PC-96"]  = "jPJkAVkEpcQMrWAZuQkdFLeBeXEVJNhn",
+    ["PC-97"]  = "ntcSQjJijlfiBNpkRnkaKPkeNoPyjVZY",
+    ["PC-100"] = "UctlUwQxBFuwhSvQNvzGaLzvBFBeRtPf",
 }
 
-script_key = "HExPRIwEWOvEryNNoVTioPEUPqEAFYdw"; 
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/f5f746e97e3e16a8f21c6c29e5699d39.lua"))()
+if PC_KEYS[PC_NAME] then
+    script_key = PC_KEYS[PC_NAME]
+end
 
+repeat wait() until game:IsLoaded()
+task.wait(10)
+
+getgenv().Configuration = {
+    -- ==================== [ ตั้งค่าการปลูกและการซื้อเมล็ด ] ====================
+    SEEDS = "all",
+    
+    BuySeed = "all",
+
+
+    PlantSeed = true,      -- ตั้งค่าเป็น false เพื่อปิดการปลูกเมล็ดอัตโนมัติ
+    DisableHarvest = false, -- ตั้งค่าเป็น true เพื่อปิดการเก็บเกี่ยวผลผลิตอัตโนมัติ
+    DelayTime = 0.5,       -- เวลาดีเลย์ (วินาที) ในแต่ละรอบการทำงานของฟาร์ม
+    
+    SaveSeeds = { "Gold", "Rainbow", "Dragon's Breath" }, -- เมล็ดที่ต้องการเก็บไว้ในกระเป๋าเป้ (ห้ามปลูกเด็ดขาด)
+
+    -- ==================== [ ตั้งค่าการขุดและการเคลียร์พื้นที่ ] ====================
+    AutoShovelCheap = true,       -- ขุดต้นไม้ราคาถูกออกอัตโนมัติเพื่อเปิดพื้นที่เมื่อแปลงปลูกเต็ม (ขุดเมื่อจำนวนต้นไม้ถึงขีดจำกัดสูงสุด)
+    ShovelThresholdPrice = 10000,  -- เกณฑ์ราคาของเมล็ด (ต้นไม้ที่เมล็ดราคาต่ำกว่าค่านี้จะถูกขุดออกทั้งหมด)
+    KeepSeeds = { "Dragon's Breath", "Moon Bloom" }, -- เมล็ดที่จะไม่มีวันโดนขุดออกเด็ดขาด
+
+    AutoShovel = false,           -- ขุดกองดิน/วัชพืช (ขุมทรัพย์) บนแปลงปลูกอัตโนมัติ
+
+    -- ==================== [ ตั้งค่าการขายสัตว์เลี้ยงอัตโนมัติ ] ====================
+    AutoSellPets = true,          -- เปิดการขายสัตว์เลี้ยงที่กำหนดไว้จากกระเป๋าเป้โดยอัตโนมัติ
+    SellPets = { "Frog", "Bunny" }, -- รายชื่อสัตว์เลี้ยงที่ต้องการขาย (หรือใส่ "all" เพื่อขายสัตว์เลี้ยงทุกตัวในกระเป๋า)
+
+    -- ==================== [ ตั้งค่าการซื้อสัตว์เลี้ยงป่าและอุปกรณ์ ] ====================
+    AutoBuyPets = true,           -- วาร์ปไปซื้อสัตว์เลี้ยงป่าที่เกิดบนแผนที่อัตโนมัติ
+    BuyPets = { "Raccoon", "Unicorn", "BlackDragon", "IceSerpent", "Golden Dragonfly" }, -- สัตว์เลี้ยงที่อนุญาตให้ซื้อ (หรือใส่ nil เพื่อซื้อทั้งหมด)
+    
+    AutoBuyGear = true,           -- ซื้ออุปกรณ์และอัปเกรดต่างๆ ในร้านค้าอัตโนมัติ (เช่น บัวรดน้ำ, สปริงเกอร์, พลั่ว)
+    BuyGearList = {               -- รายชื่ออุปกรณ์ที่ต้องการซื้อตามลำดับ (ใส่ nil เพื่อซื้อทั้งหมด)
+        "Super Watering Can",
+        "Trowel",
+        "Common Sprinkler",
+        "Super Sprinkler",
+        "Legendary Sprinkler"
+    },
+
+    AutoPlaceSprinklers = false,   -- วางสปริงเกอร์จากกระเป๋าลงบนพื้นที่ว่างของแปลงปลูกอัตโนมัติ
+    AutoExpandPlot = false,       -- ขยายขนาดแปลงปลูกอัตโนมัติเมื่อมีเงินพอ (สูงสุดเลเวล 5)
+
+    -- ==================== [ ตั้งค่าความจุและการลงทุนต่อ ] ====================
+    InfinitePlanting = true,      -- ปลูกไปเรื่อยๆ โดยไม่เช็คขีดจำกัดความจุแปลงปลูก
+    BatchSize = 50,               -- จำนวนเมล็ดที่จะซื้อและปลูกในแต่ละรอบของโหมด InfinitePlanting
+    MaxPlants = 200,              -- จำนวนต้นไม้สูงสุดบนแปลงปลูก (ใช้เมื่อปิด InfinitePlanting เท่านั้น)
+    
+    AutoReinvest = false,         -- ซื้อและเปิดกล่อง "Silver Crates" อัตโนมัติเมื่อเงินมีมากกว่า 5,000 Sheckles
+    BuySeedOnFull = { "Dragon's Breath" }, -- เมล็ดที่ต้องการซื้อตุนไว้ในกระเป๋าเมื่อแปลงปลูกเต็มแล้ว
+    BuySeedOnFullLimit = 100,     -- ขีดจำกัดจำนวนเมล็ดที่ต้องการซื้อตุนในกระเป๋า
+
+    -- ==================== [ ตั้งค่าการเคลื่อนที่ ] ====================
+    MovementMode = "Walk",         -- วิธีการเคลื่อนที่: "Walk" (เดิน), "Tween" (ลอยตัว), หรือ "Instant" (เทเลพอร์ตทันที)
+    WalkSpeed = 32,               -- ความเร็วในการเดินของตัวละคร
+    TweenSpeed = 150,             -- ความเร็วการลอยตัว (studs ต่อวินาที)
+
+    -- ==================== [ ตั้งค่าตัวช่วยเพิ่ม FPS & ประสิทธิภาพ ] ====================
+    Disable3DRendering = false,   -- เปิดจอขาว (ปิดการแสดงผล 3D ทั้งหมด) เพื่อลด GPU เหลือ 0% เหมาะสำหรับฟาร์มหลายจอ
+
+
+    -- ==================== [ ตั้งค่าการแสดงผลสถานะ ] ====================
+    Horst = true,                 -- เปิดใช้งานอัปเดตคำอธิบายสถานะบอท Horst
+    HorstShowItems = { "Gold", "Rainbow", "Dragon's Breath" }, -- รายการสิ่งของที่ต้องการแสดงใน Horst (หรือใส่ "all")
+    Storm = false,                -- เปิดใช้งานส่งสถานะผ่าน Storm Launcher Local API
+}
+
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/f5f746e97e3e16a8f21c6c29e5699d39.lua"))()
