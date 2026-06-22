@@ -1,7 +1,7 @@
 task.spawn(function()
-    setfpscap(10)
+    setfpscap(8)
     while task.wait(6) do
-        setfpscap(10)
+        setfpscap(8)
     end
 end)
 
