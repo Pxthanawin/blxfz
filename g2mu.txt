@@ -356,9 +356,25 @@ task.wait(10)
 -- c
 getgenv().Configuration = {
     -- ==================== [ ตั้งค่าการปลูกและการซื้อเมล็ด ] ====================
-    SEEDS = "all",
+    SEEDS = "Bamboo",
+        "Carrot",
+        "Orange Tulip",
+        "Watermelon",
+        "Pumpkin",
+        "Daffodil",
+        "Mushroom",
+        "Nightshade",
+        "Beanstalk",
     
-    BuySeed = "all",
+    BuySeed = "Bamboo",
+        "Carrot",
+        "Orange Tulip",
+        "Watermelon",
+        "Pumpkin",
+        "Daffodil",
+        "Mushroom",
+        "Nightshade",
+        "Beanstalk",
 
 
     PlantSeed = true,      -- ตั้งค่าเป็น false เพื่อปิดการปลูกเมล็ดอัตโนมัติ
