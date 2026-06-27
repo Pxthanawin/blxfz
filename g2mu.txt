@@ -355,8 +355,9 @@ repeat wait() until game:IsLoaded()
 task.wait(10)
 -- c
 getgenv().Configuration = {
-    -- ==================== [ ตั้งค่าการปลูกและการซื้อเมล็ด ] ====================
-    SEEDS = "Bamboo",
+    -- ==================== [ Planting & Buying Settings ] ====================
+    SEEDS = { -- Table list of seed names to plant, or "all" to allow any seed
+        "Bamboo",
         "Carrot",
         "Orange Tulip",
         "Watermelon",
@@ -365,8 +366,10 @@ getgenv().Configuration = {
         "Mushroom",
         "Nightshade",
         "Beanstalk",
+    },
     
-    BuySeed = "Bamboo",
+    BuySeed = { -- Table of seeds allowed to purchase, or true/false to enable/disable buying globally
+        "Bamboo",
         "Carrot",
         "Orange Tulip",
         "Watermelon",
@@ -375,31 +378,32 @@ getgenv().Configuration = {
         "Mushroom",
         "Nightshade",
         "Beanstalk",
+    },
 
-
-    PlantSeed = true,      -- ตั้งค่าเป็น false เพื่อปิดการปลูกเมล็ดอัตโนมัติ
-    DisableHarvest = false, -- ตั้งค่าเป็น true เพื่อปิดการเก็บเกี่ยวผลผลิตอัตโนมัติ
-    DelayTime = 0.5,       -- เวลาดีเลย์ (วินาที) ในแต่ละรอบการทำงานของฟาร์ม
+    PlantSeed = true,      -- Set to false to completely disable auto-planting seeds
+    DisableHarvest = false, -- Set to true to completely disable auto-harvesting crops
+    DelayTime = 0.5,       -- Delay in seconds between each farm cycle check
     
-    SaveSeeds = { "Gold", "Rainbow", "Dragon's Breath" }, -- เมล็ดที่ต้องการเก็บไว้ในกระเป๋าเป้ (ห้ามปลูกเด็ดขาด)
+    SaveSeeds = { "Gold", "Rainbow", "Dragon's Breath" }, -- Seeds to keep in backpack (never plant)
 
-    -- ==================== [ ตั้งค่าการขุดและการเคลียร์พื้นที่ ] ====================
-    AutoShovelCheap = true,       -- ขุดต้นไม้ราคาถูกออกอัตโนมัติเพื่อเปิดพื้นที่เมื่อแปลงปลูกเต็ม (ขุดเมื่อจำนวนต้นไม้ถึงขีดจำกัดสูงสุด)
-    ShovelThresholdPrice = 10000,  -- เกณฑ์ราคาของเมล็ด (ต้นไม้ที่เมล็ดราคาต่ำกว่าค่านี้จะถูกขุดออกทั้งหมด)
-    KeepSeeds = { "Dragon's Breath", "Moon Bloom" }, -- เมล็ดที่จะไม่มีวันโดนขุดออกเด็ดขาด
-
-    AutoShovel = false,           -- ขุดกองดิน/วัชพืช (ขุมทรัพย์) บนแปลงปลูกอัตโนมัติ
-
-    -- ==================== [ ตั้งค่าการขายสัตว์เลี้ยงอัตโนมัติ ] ====================
-    AutoSellPets = true,          -- เปิดการขายสัตว์เลี้ยงที่กำหนดไว้จากกระเป๋าเป้โดยอัตโนมัติ
-    SellPets = { "Frog", "Bunny" }, -- รายชื่อสัตว์เลี้ยงที่ต้องการขาย (หรือใส่ "all" เพื่อขายสัตว์เลี้ยงทุกตัวในกระเป๋า)
-
-    -- ==================== [ ตั้งค่าการซื้อสัตว์เลี้ยงป่าและอุปกรณ์ ] ====================
-    AutoBuyPets = true,           -- วาร์ปไปซื้อสัตว์เลี้ยงป่าที่เกิดบนแผนที่อัตโนมัติ
-    BuyPets = { "Raccoon", "Unicorn", "BlackDragon", "IceSerpent", "Golden Dragonfly" }, -- สัตว์เลี้ยงที่อนุญาตให้ซื้อ (หรือใส่ nil เพื่อซื้อทั้งหมด)
+    -- ==================== [ Shoveling & Clearing Settings ] ====================
+    AutoShovelCheap = true,       -- Automatically shovel cheap crops to make space once plot is full
+    ShovelThresholdPrice = 10000,  -- Crop seed threshold price (anything cheaper is shoveled)
+    KeepSeeds = { "Dragon's Breath", "Moon Bloom" }, -- Seeds that will NEVER be shoveled
     
-    AutoBuyGear = true,           -- ซื้ออุปกรณ์และอัปเกรดต่างๆ ในร้านค้าอัตโนมัติ (เช่น บัวรดน้ำ, สปริงเกอร์, พลั่ว)
-    BuyGearList = {               -- รายชื่ออุปกรณ์ที่ต้องการซื้อตามลำดับ (ใส่ nil เพื่อซื้อทั้งหมด)
+    AutoShovel = false,           -- Automatically dig weeds/mounds (treasures) on garden plots
+
+    -- ==================== [ Pet auto-selling Settings ] ====================
+    AutoSellPets = true,          -- Automatically sells matching pets in your backpack
+    SellPets = { "Frog", "Bunny" }, -- List of pet types to sell, or "all" to sell any pet in backpack
+
+    -- ==================== [ Wild Pet & Gear Buying Settings ] ====================
+    AutoBuyPets = true,           -- Automatically teleports to and buys spawned wild pets on the map
+    BuyPets = { "Raccoon", "Unicorn", "BlackDragon", "IceSerpent", "Golden Dragonfly" }, -- Allowed pets to buy (or nil to buy all)
+    
+    AutoBuyGear = true,           -- Automatically buys shop upgrades (watering cans, sprinklers, shovels, etc.)
+    gear = true,                  -- (Alias for AutoBuyGear)
+    BuyGearList = {               -- Specific list of upgrades to purchase (nil purchases all in order)
         "Super Watering Can",
         "Trowel",
         "Common Sprinkler",
@@ -407,31 +411,28 @@ getgenv().Configuration = {
         "Legendary Sprinkler"
     },
 
-    AutoPlaceSprinklers = false,   -- วางสปริงเกอร์จากกระเป๋าลงบนพื้นที่ว่างของแปลงปลูกอัตโนมัติ
-    AutoExpandPlot = false,       -- ขยายขนาดแปลงปลูกอัตโนมัติเมื่อมีเงินพอ (สูงสุดเลเวล 5)
+    AutoPlaceSprinklers = false,   -- Automatically places sprinkler tools from backpack onto empty plot spaces
+    AutoExpandPlot = true,       -- Automatically purchases plot size expansions when affordable (Max level 5)
 
-    -- ==================== [ ตั้งค่าความจุและการลงทุนต่อ ] ====================
-    InfinitePlanting = true,      -- ปลูกไปเรื่อยๆ โดยไม่เช็คขีดจำกัดความจุแปลงปลูก
-    BatchSize = 50,               -- จำนวนเมล็ดที่จะซื้อและปลูกในแต่ละรอบของโหมด InfinitePlanting
-    MaxPlants = 200,              -- จำนวนต้นไม้สูงสุดบนแปลงปลูก (ใช้เมื่อปิด InfinitePlanting เท่านั้น)
+    -- ==================== [ Capacity & Reinvestment Settings ] ====================
+    InfinitePlanting = true,      -- Plant continuously without checking plot capacities
+    BatchSize = 50,               -- Amount of seeds to purchase and plant in a single batch
+    MaxPlants = 200,              -- Max plants on plot (used only if InfinitePlanting is false)
     
-    AutoReinvest = false,         -- ซื้อและเปิดกล่อง "Silver Crates" อัตโนมัติเมื่อเงินมีมากกว่า 5,000 Sheckles
-    BuySeedOnFull = { "Dragon's Breath" }, -- เมล็ดที่ต้องการซื้อตุนไว้ในกระเป๋าเมื่อแปลงปลูกเต็มแล้ว
-    BuySeedOnFullLimit = 100,     -- ขีดจำกัดจำนวนเมล็ดที่ต้องการซื้อตุนในกระเป๋า
+    BuySeedOnFull = { "Dragon's Breath" }, -- Seeds to purchase to stockpile in backpack when garden plot is full
+    BuySeedOnFullLimit = 100,     -- Limit of how many stockpile seeds to purchase/keep
 
-    -- ==================== [ ตั้งค่าการเคลื่อนที่ ] ====================
-    MovementMode = "Walk",         -- วิธีการเคลื่อนที่: "Walk" (เดิน), "Tween" (ลอยตัว), หรือ "Instant" (เทเลพอร์ตทันที)
-    WalkSpeed = 32,               -- ความเร็วในการเดินของตัวละคร
-    TweenSpeed = 150,             -- ความเร็วการลอยตัว (studs ต่อวินาที)
+    -- ==================== [ Movement Settings ] ====================
+    MovementMode = "Walk",         -- Movement methods: "Walk", "Tween", or "Instant" (Teleport)
+    WalkSpeed = 32,               -- Walking speed of character
+    TweenSpeed = 150,             -- Speed of tweening (studs per second)
 
-    -- ==================== [ ตั้งค่าตัวช่วยเพิ่ม FPS & ประสิทธิภาพ ] ====================
-    Disable3DRendering = false,   -- เปิดจอขาว (ปิดการแสดงผล 3D ทั้งหมด) เพื่อลด GPU เหลือ 0% เหมาะสำหรับฟาร์มหลายจอ
-
-
-    -- ==================== [ ตั้งค่าการแสดงผลสถานะ ] ====================
-    Horst = true,                 -- เปิดใช้งานอัปเดตคำอธิบายสถานะบอท Horst
-    HorstShowItems = { "Gold", "Rainbow", "Dragon's Breath" }, -- รายการสิ่งของที่ต้องการแสดงใน Horst (หรือใส่ "all")
-    Storm = false,                -- เปิดใช้งานส่งสถานะผ่าน Storm Launcher Local API
+    -- ==================== [ FPS Booster & Performance Settings ] ====================
+    Disable3DRendering = false,   -- Set to true to disable 3D viewport (White Screen). 0% GPU load.
+    -- ==================== [ Status Tracking Settings ] ====================
+    Horst = true,                 -- Enable coordination status description updates
+    HorstShowItems = { "Gold", "Rainbow", "Dragon's Breath" }, -- Items to display in description (or "all")
+    Storm = false,                -- Enable Storm launcher local API description updates
 }
 
 loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/f5f746e97e3e16a8f21c6c29e5699d39.lua"))()
