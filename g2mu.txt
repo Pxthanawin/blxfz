@@ -337,10 +337,10 @@ getgenv().Hermanos_Settings = {
 task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/gag2.lua'))() end)
 
 local PC_KEYS = {
-    ["PC-44"]  = "kZnLEdaRUUAtKQCRuEENLPGspItSzRLh",
-    ["PC-71"]  = "YeJBosDHGGNRJxpmHvFelgjMNJcQKoNm",
-    ["PC-85"]  = "AaAsVtspBeJerIcOFjyAlllPkKchaVvV",
-    ["PC-93"]  = "PeXhAneuQXamSKdiffMvshMkkHEyoNjX",
+    ["PC-06"]  = "kZnLEdaRUUAtKQCRuEENLPGspItSzRLh",
+    ["PC-08"]  = "YeJBosDHGGNRJxpmHvFelgjMNJcQKoNm",
+    ["PC-09"]  = "AaAsVtspBeJerIcOFjyAlllPkKchaVvV",
+    ["PC-14"]  = "PeXhAneuQXamSKdiffMvshMkkHEyoNjX",
     ["PC-95"]  = "zgagKZYpSfGpBvVWkpBrGKLPBfKIRChT",
     ["PC-96"]  = "jPJkAVkEpcQMrWAZuQkdFLeBeXEVJNhn",
     ["PC-97"]  = "ntcSQjJijlfiBNpkRnkaKPkeNoPyjVZY",
