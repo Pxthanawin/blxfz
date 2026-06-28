@@ -159,6 +159,7 @@ local MAIL_NOTE     = ""                    -- Optional message attached to the 
 local TARGET_SEEDS = {
     ["Gold"]        = true,
     ["Rainbow"]     = true,
+	["Mega"] = true,
 }
 
 -- =================================================================
@@ -295,6 +296,7 @@ getgenv().Hermanos_Settings = {
         ["Horned Melon"] = true,
         ["Gold"] = true,
         ["Rainbow"] = true,
+		["Mega"] = true,
         ["Hypnobloom"] = true,
     },
     ["Filter Plants"] = {
@@ -384,7 +386,7 @@ getgenv().Configuration = {
     DisableHarvest = false, -- Set to true to completely disable auto-harvesting crops
     DelayTime = 0.5,       -- Delay in seconds between each farm cycle check
     
-    SaveSeeds = { "Gold", "Rainbow", "Dragon's Breath" }, -- Seeds to keep in backpack (never plant)
+    SaveSeeds = { "Gold", "Rainbow", "Dragon's Breath", "Mega", }, -- Seeds to keep in backpack (never plant)
 
     -- ==================== [ Shoveling & Clearing Settings ] ====================
     AutoShovelCheap = true,       -- Automatically shovel cheap crops to make space once plot is full
