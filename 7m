@@ -357,23 +357,24 @@ print("--- Heartbeat Script Initialized and Running (with Race Check) ---")
 -- No need for an explicit while loop at the end.
 end)
 
-
 if tonumber((string.gsub(PC_NAME, "%D", ""))) <= 75 then
     task.spawn(function()
     task.wait(10)
-    getgenv().Hermanos_Settings = {
-        ['key'] = 'f156ae28-a661-46c9-bfd4-99f36231b82e',
-      ['PC'] = PC_NAME,
-    }
-    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
+        _G.Config={
+        UserID="cb19b862-6e57-441e-aa6b-16fc957e96ac",
+        discord_id="741272933082595470",
+        Note=PC_NAME
+        }
+        local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/trackstatblox"))()end)if s then break end wait(5)end
     end)
 else
     task.spawn(function()
     task.wait(10)
-    getgenv().Hermanos_Settings = {
-        ['key'] = '105bc40e-6178-4768-9680-9baf2fe3a151',
-      ['PC'] = PC_NAME,
-    }
-    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/main.lua'))() end)
+        _G.Config={
+        UserID="7b4e88b3-57ee-4850-b2a7-04e474576fde",
+        discord_id="812909971997589535",
+        Note=PC_NAME
+        }
+        local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/trackstatblox"))()end)if s then break end wait(5)end
     end)
 end
