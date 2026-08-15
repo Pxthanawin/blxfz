@@ -336,7 +336,7 @@ getgenv().Setting = {
         "Dragon-Dragon",
         --"T-Rex-T-Rex",
         "Mammoth-Mammoth",
-        "Tiger-Tiger",
+        --"Tiger-Tiger",
         "Gas-Gas",
         "Yeti-Yeti",
         "Gravity-Gravity",
