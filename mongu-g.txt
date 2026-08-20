@@ -310,14 +310,15 @@ getgenv().Setting = {
     ["FucusOnLevel"] = true,
     ["Fruits"] = {  -- setting for fruits u want
         ["Primary"] = { -- if current fruit is not in this list, eat/buy
-            "Kitsune-Kitsune",
+            --"Kitsune-Kitsune",
             "Dough-Dough",
             "Tiger-Tiger",
-            "Yeti-Yeti",
-            "Gas-Gas",
-            "Dragon-Dragon",
-            "T-Rex-T-Rex",
+            --"Yeti-Yeti",
+            --"Gas-Gas",
+            --"Dragon-Dragon",
+            --"T-Rex-T-Rex",
             "Buddha-Buddha",
+            "Mammoth-Mammoth",
             -- u can configs add mores/remove and must end with , (comma symbol)
         },
         ["Normal"] = {
